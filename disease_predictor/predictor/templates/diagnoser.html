@@ -93,24 +93,27 @@
         <div class="tab-pane fade show active" id="content1">
             <h1 class="mb-4 text-center">Breast Cancer Diagnose</h1>
             <div class="container">
-                <div class="row row-cols-1 row-cols-md-5 g-4">
-                    <!-- Input Fields -->
-                    {% for feature in feature_names_breast_cancer %}
-                    <div class="col">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ feature }}</h5>
-                                <input type="number" class="form-control form-control-sm" id="{{ feature }}" name="{{ feature }}" required step="any">
+                <form method="post" action="{% url 'breast_cancer_prediction' %}" class="needs-validation" novalidate>
+                    {% csrf_token %}
+                    <div class="row row-cols-1 row-cols-md-5 g-4">
+                        <!-- Input Fields -->
+                        {% for feature in feature_names_breast_cancer %}
+                            <div class="col">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ feature }}</h5>
+                                        <input type="number" class="form-control form-control-sm" id="{{ feature }}" name="{{ feature }}" required step="any">
+                                    </div>
+                                </div>
                             </div>
+                        {% endfor %}
+                        <!-- Submit Button -->
+                        <div class="text-center mt-4">
+                            <button type="submit" class="btn btn-info">Submit</button>
                         </div>
                     </div>
-                    {% endfor %}
-                
-                <!-- Submit Button -->
-                <div class="text-center mt-4">
-                    <button type="submit" class="btn btn-info">submit</button>
-                </div>
-                </div>
+                </form>
+            </div>
         </div>
         <div class="tab-pane fade" id="content2">
             <h3>Content for Tab 2</h3>
@@ -121,4 +124,5 @@
             <!-- Add your content for Tab 3 here -->
         </div>
     </div>
+    
 </div>
