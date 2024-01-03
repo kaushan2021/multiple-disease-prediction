@@ -11,9 +11,141 @@
 </div> 
 <div id="nav_bar">
     {% include 'nav_bar.html' %}
-</div>  
+</div>
+<!-- Custom CSS -->
+<style>
+    body {
+        background-color: #f5f5f5;
+    }
+
+    .container {
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin-top: 20px;
+    }
+
+    .card {
+        background-color: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        margin-bottom: 20px;
+    }
+
+    .btn-submit {
+        background-color: #1291ff;
+        color: #ffffff;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+    }
+</style>
+</head>
 <body>
-    <h1>Breast Cancer Prediction</h1>
+
+<div class="container">
+<h1 class="mb-4 text-center">Breast Cancer Feature Input Form</h1>
+<div class="row row-cols-1 row-cols-md-5 g-4">
+    <!-- Input Fields -->
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Mean Radius</h5>
+                <input type="number" class="form-control form-control-sm" id="mean_radius" name="mean_radius" required step="any">
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Mean Radius</h5>
+                <input type="number" class="form-control form-control-sm" id="mean_radius" name="mean_radius" required step="any">
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Mean Radius</h5>
+                <input type="number" class="form-control form-control-sm" id="mean_radius" name="mean_radius" required step="any">
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Mean Radius</h5>
+                <input type="number" class="form-control form-control-sm" id="mean_radius" name="mean_radius" required step="any">
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Mean Radius</h5>
+                <input type="number" class="form-control form-control-sm" id="mean_radius" name="mean_radius" required step="any">
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Mean Radius</h5>
+                <input type="number" class="form-control form-control-sm" id="mean_radius" name="mean_radius" required step="any">
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Mean Radius</h5>
+                <input type="number" class="form-control form-control-sm" id="mean_radius" name="mean_radius" required step="any">
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Mean Radius</h5>
+                <input type="number" class="form-control form-control-sm" id="mean_radius" name="mean_radius" required step="any">
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Mean Radius</h5>
+                <input type="number" class="form-control form-control-sm" id="mean_radius" name="mean_radius" required step="any">
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Mean Radius</h5>
+                <input type="number" class="form-control form-control-sm" id="mean_radius" name="mean_radius" required step="any">
+            </div>
+        </div>
+    </div>
+
+    <!-- Add more input fields for other features -->
+
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Mean Symmetry</h5>
+                <input type="number" class="form-control form-control-sm" id="mean_symmetry" name="mean_symmetry" required step="any">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Submit Button -->
+<div class="text-center mt-4">
+    <button type="submit" class="btn btn-submit">Submit</button>
+</div>
+</div>
 
 </body>
 </html>

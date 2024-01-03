@@ -1,0 +1,124 @@
+<head>
+
+
+    <!-- Custom CSS -->
+    <style>
+        body {
+            background-color: #f5f5f5;
+        }
+
+        .navbar {
+            background-color: #343a40;
+            padding: 10px;
+        }
+
+        .navbar-dark .navbar-nav .nav-link {
+            color: #ffffff;
+        }
+
+        .navbar-dark .navbar-toggler-icon {
+            background-color: #ffffff;
+        }
+
+        .container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+
+        .card {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+
+        .nav-tabs {
+            border-bottom: 2px solid #dee2e6;
+            margin-bottom: 20px;
+        }
+
+        .nav-tabs .nav-item {
+            margin-bottom: 0;
+        }
+
+        .nav-tabs .nav-link {
+            color: #495057;
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 5px 5px 0 0;
+        }
+
+        .nav-tabs .nav-link.active {
+            color: #ffffff;
+            background-color: #343a40;
+            border-color: #343a40;
+        }
+
+        .tab-content {
+            padding: 20px;
+            border: 1px solid #dee2e6;
+            border-radius: 0 5px 5px 5px;
+        }
+    </style>
+</head>
+
+<div id="base">
+    {% include 'base.html' %}
+</div> 
+<div id="nav_bar">
+    {% include 'nav_bar.html' %}
+</div>   
+
+<body>
+
+<div class="container">
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link active" id="tab1" data-bs-toggle="tab" href="#content1">Breast Cancer</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="tab2" data-bs-toggle="tab" href="#content2">Heart Disease</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="tab3" data-bs-toggle="tab" href="#content3">Parkinsons</a>
+        </li>
+    </ul>
+
+    <div class="tab-content">
+        <div class="tab-pane fade show active" id="content1">
+            <h1 class="mb-4 text-center">Breast Cancer Diagnose</h1>
+            <div class="container">
+                <div class="row row-cols-1 row-cols-md-5 g-4">
+                    <!-- Input Fields -->
+                    {% for feature in feature_names_breast_cancer %}
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ feature }}</h5>
+                                <input type="number" class="form-control form-control-sm" id="{{ feature }}" name="{{ feature }}" required step="any">
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                
+                <!-- Submit Button -->
+                <div class="text-center mt-4">
+                    <button type="submit" class="btn btn-info">submit</button>
+                </div>
+                </div>
+        </div>
+        <div class="tab-pane fade" id="content2">
+            <h3>Content for Tab 2</h3>
+            <!-- Add your content for Tab 2 here -->
+        </div>
+        <div class="tab-pane fade" id="content3">
+            <h3>Content for Tab 3</h3>
+            <!-- Add your content for Tab 3 here -->
+        </div>
+    </div>
+</div>
