@@ -17,8 +17,6 @@ def home_view(request):
     return render(request, 'home.html')
 
 def diagnoser_view(request):
-
-    
     return render(request, 'diagnoser.html', {'feature_names_breast_cancer': feature_names_breast_cancer})
 
 def breast_cancer_prediction(request):
@@ -45,7 +43,10 @@ def breast_cancer_prediction(request):
             result = "negative"
         result = "possitive"    
 
-        return HttpResponse("Data captured successfully!\n" + str(captured_data)+result)
+        return render(request,'breast_cancer_prediction.html',{'prediction': prediction})
+        #return HttpResponse("Data captured successfully!\n" + str(captured_data)+result)
 
     return HttpResponse("Invalid request method. Only POST requests are allowed.")
 
+def breast_cancer_info__view(request):
+    return render(request, 'breast_cancer_info.html')

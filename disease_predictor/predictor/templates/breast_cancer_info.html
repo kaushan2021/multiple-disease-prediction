@@ -1,0 +1,64 @@
+<div id="base">
+    {% include 'base.html' %}
+</div> 
+<div id="nav_bar">
+    {% include 'nav_bar.html' %}
+</div>  
+
+<style>
+    body {
+        background-color: #f8f9fa; /* Light gray background */
+    }
+
+    .medical-container {
+        background-color: #ffffff; /* White container background */
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin: 20px auto;
+        max-width: 800px;
+    }
+
+    .medical-header {
+        background-color: #007bff; /* Medical theme blue */
+        color: #ffffff;
+        padding: 10px;
+        text-align: center;
+        border-radius: 8px 8px 0 0;
+    }
+
+    .info-text {
+        margin-top: 20px;
+        font-size: 1.2em;
+    }
+
+    .useful-links {
+        margin-top: 30px;
+        text-align: center;
+    }
+
+    .useful-links a {
+        display: block;
+        margin-bottom: 10px;
+        color: #007bff; /* Medical theme blue for links */
+    }
+</style>
+
+<div class="container medical-container">
+    <div class="medical-header">
+        <h2>Breast Cancer Information</h2>
+    </div>
+
+    <div class="info-text">
+        <p>Breast cancer is a type of cancer that begins in the cells of the breast. It can occur in both men and women, but it is far more common in women.</p>
+        <p>Common symptoms include a lump in the breast, changes in breast size or shape, and changes in the skin over the breast.</p>
+        <p>Early detection and advances in treatment have improved the outlook for people with breast cancer. Treatment may include surgery, radiation, and chemotherapy.</p>
+    </div>
+
+    <div class="useful-links">
+        <h4>Useful Links</h4>
+        <a href="https://www.cancer.org/cancer/breast-cancer.html" target="_blank">American Cancer Society - Breast Cancer</a>
+        <a href="https://www.breastcancer.org/" target="_blank">Breastcancer.org</a>
+        <a href="https://www.nationalbreastcancer.org/" target="_blank">National Breast Cancer Foundation</a>
+    </div>
+</div>
