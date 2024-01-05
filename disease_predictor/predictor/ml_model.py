@@ -14,13 +14,19 @@ def predict_breast_cancer(features):
 
     model = pickle.load(open(model_file_path, 'rb'))
 
+
+    # change the input data to a numpy array
+    input_data_as_numpy_array = np.asarray(features)
+
+    # reshape the numpy array as we are predicting for one datapoint
+    input_data_reshaped = input_data_as_numpy_array.reshape(1,-1)
     
-    sample_input = np.array(features).reshape(1, -1)
-    scaler = StandardScaler()
-    features_data_reshaped = scaler.fit_transform(sample_input)
+    #sample_input = np.array(features).reshape(1, -1)
+    #scaler = StandardScaler()
+    #features_data_reshaped = scaler.fit_transform(sample_input)
 
     # Make prediction 
-    prediction = model.predict(features_data_reshaped)
+    prediction = model.predict(input_data_reshaped)
 
     prediction_result = int(prediction[0])
     

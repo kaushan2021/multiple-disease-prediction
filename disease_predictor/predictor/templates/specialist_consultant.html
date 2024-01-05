@@ -46,11 +46,11 @@
 
 <div class="container medical-container">
     <div class="medical-header">
-        <h2>Doctor Channeling Form</h2>
+        <h2>Doctor Channeling</h2>
     </div>
 
     <div class="form-container">
-        <form action="{% url 'your_django_view' %}" method="post">
+        <form action="#" method="post">
             {% csrf_token %}
             <div class="form-group">
                 <label for="patientName">Patient Name:</label>
@@ -79,7 +79,7 @@
 
             <div class="form-group">
                 <label for="appointmentDate">Appointment Date:</label>
-                <input type="text" class="form-control datepicker" id="appointmentDate" name="appointmentDate" autocomplete="off" required>
+                <input type="date" class="form-control datepicker" id="appointmentDate" name="appointmentDate" autocomplete="off" required>
             </div>
 
             <div class="submit-button">

@@ -49,13 +49,13 @@
         <div class="medical-header">
             <h2>Diagnosis Result</h2>
         </div>
-        {% if prediction == 1 %}
+        {% if prediction == 0 %}
         <div class="result-container">
             <!-- Display your backend result here -->
             <p class="result-text-positive">Cancer Diagnosis: Positive - Please consult with a healthcare professional </p>
             <div class="action-buttons">
                 <a href="{% url 'breast_cancer_info' %}" class="btn btn-warning">More info</a>
-                <a href="#" class="btn btn-success">Consult a Doctor</a>
+                <a href="{% url 'specialist_consultant' %}" class="btn btn-success">Consult a Doctor</a>
             </div>
         </div>
         {%else%}

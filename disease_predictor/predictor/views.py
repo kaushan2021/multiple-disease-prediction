@@ -36,12 +36,9 @@ def breast_cancer_prediction(request):
                 print(f"Could not convert {feature} value to float: {data_value}")
 
            
-        feature_inputs = [14.5, 21.2, 98.0, 654.3, 0.102, 0.107, 0.081, 0.066, 0.176, 0.059, 0.271, 0.792, 2.613, 26.5, 0.005, 0.022, 0.020, 0.007, 0.025, 0.004, 15.3, 28.8, 98.0, 708.8, 0.127, 0.345, 0.391, 0.109, 0.198, 0.06]
-        prediction = predict_breast_cancer(feature_inputs)
-        
-        if prediction == 1:
-            result = "negative"
-        result = "possitive"    
+        canser_data = [13.28, 20.28, 87.32, 545.2, 0.1041, 0.1436, 0.09847, 0.06158, 0.1974, 0.06782, 0.3704, 0.8249, 2.427, 31.33, 0.005072, 0.02147, 0.02185, 0.00956, 0.01719, 0.003317, 17.38, 28, 113.1, 907.2, 0.153, 0.3724, 0.3664, 0.1492, 0.3739, 0.1027]
+        non_canser_data =[8.196, 16.84, 51.71, 201.9, 0.086, 0.05943, 0.01588, 0.005917, 0.1769, 0.06503, 0.1563, 0.9567, 1.094, 8.205, 0.008968, 0.01646, 0.01588, 0.005917, 0.02574, 0.002582, 8.964, 21.96, 57.26, 242.2, 0.1297, 0.1357, 0.0688, 0.02564, 0.3105, 0.07409]        
+        prediction = predict_breast_cancer(non_canser_data) 
 
         return render(request,'breast_cancer_prediction.html',{'prediction': prediction})
         #return HttpResponse("Data captured successfully!\n" + str(captured_data)+result)
@@ -50,3 +47,6 @@ def breast_cancer_prediction(request):
 
 def breast_cancer_info__view(request):
     return render(request, 'breast_cancer_info.html')
+
+def specialist_consultant__view(request):
+    return render(request, 'specialist_consultant.html')
