@@ -7,5 +7,7 @@ urlpatterns = [
     path('breast_cancer_prediction/', views.breast_cancer_prediction,name='breast_cancer_prediction'),
     path('breast_cancer_info/', views.breast_cancer_info__view,name='breast_cancer_info'),
     path('specialist_consultant/', views.specialist_consultant__view,name='specialist_consultant'),
+    path('heart_disease_prediction/', views.heart_disease_prediction,name='heart_disease_prediction'),
+    path('parkinsons_prediction/', views.parkinsons_prediction,name='parkinsons_prediction'),
 ]
 
