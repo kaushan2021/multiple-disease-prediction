@@ -5,10 +5,103 @@
     {% include 'nav_bar.html' %}
 </div>    
 
-<!-- Main Content -->
-<div class="container mt-4">
-    <h1>Welcome to Our Website</h1>
-    <p>This is the main page of Heath HealthGuardianPro Application</p>
-</div>
+
+<style>
+    .btn-primary {
+        background-color: #e74c3c; 
+        border-color: #e74c3c;
+        padding: 15px 30px;
+        font-size: 18px;
+        letter-spacing: 1px;
+        transition: background-color 0.3s ease-in-out;
+    }
+
+    .btn-primary:hover {
+        background-color: #c0392b;
+        border-color: #c0392b;
+    }
+
+    .feature-box {
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease-in-out;
+    }   
+
+    .feature-1 {
+        background-color: #009639;
+        color: #ffffff;
+    }
+    
+    .feature-2 {
+        background-color: #B414FF;
+        color: #ffffff;
+    }
+    
+    .feature-3 {
+        background-color: #BE8900; 
+        color: #ffffff; 
+    }
+    .feature-4 {
+        background-color: #ED3718; 
+        color: #ffffff; 
+    }
+
+    .get-started{
+        background-color: #330072; 
+        color: #ffffff; 
+    }
+
+    .header{
+        background-color: #00A9CE; 
+        color: #ffffff; 
+    }
+</style>
+
+
+
+<!-- Header -->
+<header class="jumbotron jumbotron-fluid text-center header">
+    <div class="container">
+        <h1 class="display-4">HealthGuardianPro</h1>
+        <p class="lead">Empowering Healthcare through Predictive Analysis</p>
+    </div>
+</header>
+
+<!-- Features Section -->
+<section id="features" class="container">
+    <div class="row">
+        <div class="col-lg-3 feature-box feature-1 mb-4">
+            <h2>Machine Learning Predictions</h2>
+            <p>Advanced algorithms analyze medical data to provide accurate predictions for breast cancer, heart disease, and Parkinson's.</p>
+        </div>
+        <div class="col-lg-3 feature-box feature-2 mb-4">
+            <h2>User Profiling System</h2>
+            <p>Personalized user profiles for tailored health insights. Track Recode of the Patients.</p>
+        </div>
+        <div class="col-lg-3 feature-box feature-3 mb-4">
+            <h2>Disease Education Hub</h2>
+            <p>Comprehensive educational resources on breast cancer, heart disease, and Parkinson's. Knowledge is key to prevention and early detection.</p>
+        </div>
+        <div class="col-lg-3 feature-box feature-4 mb-4">
+            <h2>Doctor Channeling System</h2>
+            <p>Seamlessly connect with healthcare professionals through our platform. Schedule appointments, seek advice, and access quality care from the comfort of your home.</p>
+        </div>
+    </div>
+</section>
+
+
+<!-- Get Started Section -->
+<section id="get-started" class="text-center py-5 get-started">
+    <div class="container">
+        <h2>Start Your Health Journey Today</h2>
+        <p>Experience the future of healthcare with HealthGuardianPro. Join now for personalized insights, education, and easy access to medical experts.</p>
+        <a href="{% url 'diagnoser' %}" class="btn btn-primary btn-lg">Get Started</a>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="text-center py-3">
+    <p>&copy; 2024 HealthGuardianPro - Transforming Healthcare with Machine Learning</p>
+</footer>
 
 

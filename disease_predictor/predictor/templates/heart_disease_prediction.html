@@ -53,14 +53,14 @@
         <div class="result-container">
             <p class="result-text-nagative"> Heart Disease Diagnosis: Negative - No immediate concerns</p>
             <div class="action-buttons">
-                <a href="{% url 'breast_cancer_info' %}" class="btn btn-warning">More info</a>
+                <a href="{% url 'heart_disease_info' %}" class="btn btn-warning">More info</a>
             </div>
         </div>
         {%else%}
         <div class="result-container">
             <p class="result-text-positive">Heart Disease Diagnosis: Positive - Please consult with a healthcare professional </p>
             <div class="action-buttons">
-                <a href="{% url 'breast_cancer_info' %}" class="btn btn-warning">More info</a>
+                <a href="{% url 'heart_disease_info' %}" class="btn btn-warning">More info</a>
                 <a href="{% url 'specialist_consultant' %}" class="btn btn-success">Consult a Doctor</a>
             </div>
         </div>

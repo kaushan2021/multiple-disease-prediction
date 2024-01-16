@@ -9,5 +9,7 @@ urlpatterns = [
     path('specialist_consultant/', views.specialist_consultant__view,name='specialist_consultant'),
     path('heart_disease_prediction/', views.heart_disease_prediction,name='heart_disease_prediction'),
     path('parkinsons_prediction/', views.parkinsons_prediction,name='parkinsons_prediction'),
+    path('heart_disease_info/', views.heart_disease_info_view,name='heart_disease_info'),
+    path('parkinsons_disease_info/', views.parkinsons_disease_info_view,name='parkinsons_disease_info'),
 ]
 

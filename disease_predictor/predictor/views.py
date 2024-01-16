@@ -117,3 +117,9 @@ def breast_cancer_info__view(request):
 
 def specialist_consultant__view(request):
     return render(request, 'specialist_consultant.html')
+
+def heart_disease_info_view(request):
+    return render(request, 'heart_disease_info.html')
+
+def parkinsons_disease_info_view(request):
+    return render(request, 'parkinsons_disease_info.html')

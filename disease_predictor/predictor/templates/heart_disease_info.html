@@ -1,0 +1,65 @@
+<div id="base">
+    {% include 'base.html' %}
+</div>
+
+<div id="nav_bar">
+    {% include 'nav_bar.html' %}
+</div>
+
+<style>
+    body {
+        background-color: #f8f9fa; /* Light gray background */
+    }
+
+    .medical-container {
+        background-color: #ffffff; /* White container background */
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin: 20px auto;
+        max-width: 800px;
+    }
+
+    .medical-header {
+        background-color: #dc3545; /* Medical theme red for heart disease */
+        color: #ffffff;
+        padding: 10px;
+        text-align: center;
+        border-radius: 8px 8px 0 0;
+    }
+
+    .info-text {
+        margin-top: 20px;
+        font-size: 1.2em;
+    }
+
+    .useful-links {
+        margin-top: 30px;
+        text-align: center;
+    }
+
+    .useful-links a {
+        display: block;
+        margin-bottom: 10px;
+        color: #dc3545; /* Medical theme red for links */
+    }
+</style>
+
+<div class="container medical-container">
+    <div class="medical-header">
+        <h2>Heart Disease Information</h2>
+    </div>
+
+    <div class="info-text">
+        <p>Heart disease, or cardiovascular disease, refers to a range of conditions that affect the heart and blood vessels. It is a leading cause of morbidity and mortality worldwide.</p>
+        <p>Common types include Coronary Artery Disease (CAD), heart failure, arrhythmias, and valvular heart disease.</p>
+        <p>Understanding the causes, recognizing symptoms, and adopting a healthy lifestyle are crucial for prevention and management.</p>
+    </div>
+
+    <div class="useful-links">
+        <h4>Useful Links</h4>
+        <a href="https://www.heart.org/" target="_blank">American Heart Association</a>
+        <a href="https://www.mayoclinic.org/diseases-conditions/heart-disease" target="_blank">Mayo Clinic - Heart Disease</a>
+        <a href="https://www.cdc.gov/heartdisease/index.htm" target="_blank">Centers for Disease Control and Prevention - Heart Disease</a>
+    </div>
+</div>
