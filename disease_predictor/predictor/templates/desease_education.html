@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Education Hub - HealthGuardianPro</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="style.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+</head>
+<style>
+    body {
+        background-color: #f4f4f9;
+        color: #333;
+        font-family: 'Arial', sans-serif;
+    }
+    
+    .disease-section {
+        margin-bottom: 40px;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    }
+    
+    .disease-section:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+    }
+    
+    .section-title {
+        color: #0056b3;
+        margin-bottom: 20px;
+        font-size: 28px;
+    }
+    
+    .icon {
+        margin-right: 10px;
+        color: #009688;
+    }
+    .useful-links {
+        margin-top: 30px;
+        text-align: center;
+    }
+
+    .useful-links a {
+        display: block;
+        margin-bottom: 10px;
+        color: #17a2b8; /* Medical theme teal for links */
+    }
+
+    .navbar {
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        background-color: #3498db; 
+        padding: 0.5rem 1rem; /* Adjust padding as needed */
+    }
+    
+    .navbar-brand {
+        color: #0056b3;
+        font-weight: bold; /* Makes the brand name bolder */
+        transition: transform 0.3s ease-in-out; /* Smooth transition for scaling */
+    }
+    
+    .navbar-brand:hover {
+        transform: scale(1.1); /* Slightly increase the size on hover */
+    }
+    
+    .nav-link {
+        margin-right: 10px; /* Spacing between items */
+        color: #555; /* Initial color for nav items */
+        transition: color 0.3s ease-in-out, border-bottom 0.3s ease-in-out; /* Smooth transition for color and border */
+        padding-bottom: 0.25rem; /* Padding to make room for the border */
+    }
+    
+    .nav-link:hover, .nav-link:focus {
+        color: #0056b3; /* Color when hovering over items */
+        border-bottom: 2px solid #0056b3; /* Border under the item for emphasis */
+    }
+    
+    /* Add this class to the <ul> that contains the nav-links for horizontal animation */
+    .navbar-nav {
+        display: flex;
+        padding-left: 0;
+        margin-bottom: 0;
+        list-style: none;
+    }
+    
+    /* Navbar toggle (hamburger) color */
+    .navbar-toggler {
+        border-color: rgba(0,0,0,.1);
+    }
+    
+ 
+</style>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+        <a class="navbar-brand" href="#">HealthGuardianPro</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Appointments</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Dashboard</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Notifications</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Education Hub</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+<div class="container mt-5">
+    <!-- Heart Disease Section -->
+    <section id="heart-disease" class="disease-section">
+        <h2 class="section-title"><i class="fas fa-heartbeat icon"></i> Heart Disease</h2>
+        <div class="info-text">
+            <p>Heart disease, or cardiovascular disease, refers to a range of conditions that affect the heart and blood vessels. It is a leading cause of morbidity and mortality worldwide.</p>
+            <p>Common types include Coronary Artery Disease (CAD), heart failure, arrhythmias, and valvular heart disease.</p>
+            <p>Understanding the causes, recognizing symptoms, and adopting a healthy lifestyle are crucial for prevention and management.</p>
+        </div>
+    
+        <div class="useful-links">
+            <h4>Useful Links</h4>
+            <a href="https://www.heart.org/" target="_blank">American Heart Association</a>
+            <a href="https://www.mayoclinic.org/diseases-conditions/heart-disease" target="_blank">Mayo Clinic - Heart Disease</a>
+            <a href="https://www.cdc.gov/heartdisease/index.htm" target="_blank">Centers for Disease Control and Prevention - Heart Disease</a>
+        </div>
+    </section>
+    
+    <!-- Breast Cancer Section -->
+    <section id="breast-cancer" class="disease-section">
+        <h2 class="section-title"><i class="fas fa-ribbon icon"></i> Breast Cancer</h2>
+        <div class="info-text">
+            <p>Breast cancer is a type of cancer that begins in the cells of the breast. It can occur in both men and women, but it is far more common in women.</p>
+            <p>Common symptoms include a lump in the breast, changes in breast size or shape, and changes in the skin over the breast.</p>
+            <p>Early detection and advances in treatment have improved the outlook for people with breast cancer. Treatment may include surgery, radiation, and chemotherapy.</p>
+        </div>
+    
+        <div class="useful-links">
+            <h4>Useful Links</h4>
+            <a href="https://www.cancer.org/cancer/breast-cancer.html" target="_blank">American Cancer Society - Breast Cancer</a>
+            <a href="https://www.breastcancer.org/" target="_blank">Breastcancer.org</a>
+            <a href="https://www.nationalbreastcancer.org/" target="_blank">National Breast Cancer Foundation</a>
+        </div>
+    </section>
+    
+    <!-- Parkinson's Section -->
+    <section id="parkinsons" class="disease-section">
+        <h2 class="section-title"><i class="fas fa-brain icon"></i> Parkinson's</h2>
+        <div class="info-text">
+            <p>Parkinson's disease is a neurodegenerative disorder that affects movement control. It develops gradually, and its symptoms may include tremors, stiffness, and difficulty with balance and coordination.</p>
+            <p>The primary cause is the loss of dopamine-producing cells in the brain. While there is no cure for Parkinson's disease, various treatments can help manage symptoms and improve quality of life.</p>
+            <p>Early diagnosis, medication, physical therapy, and lifestyle modifications are key components of Parkinson's disease management.</p>
+        </div>
+    
+        <div class="useful-links">
+            <h4>Useful Links</h4>
+            <a href="https://www.parkinson.org/" target="_blank">Parkinson's Foundation</a>
+            <a href="https://www.michaeljfox.org/" target="_blank">Michael J. Fox Foundation for Parkinson's Research</a>
+            <a href="https://www.ninds.nih.gov/Disorders/Patient-Caregiver-Education/Hope-Through-Research/Parkinsons-Disease-Hope-Through-Research" target="_blank">National Institute of Neurological Disorders and Stroke - Parkinson's Disease</a>
+        </div>
+    </section>
+</div>
+
+<!-- Bootstrap JS, Popper.js, and jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.4.7/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

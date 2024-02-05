@@ -1,9 +1,5 @@
-<div id="base">
-    {% include 'base.html' %}
-</div> 
-<div id="nav_bar">
-    {% include 'nav_bar.html' %}
-</div>   
+{% include 'base.html' %}
+{% include 'nav_bar.html' %}
 
 <style>
     body {
@@ -144,7 +140,7 @@
         </div>
         <div class="tab-pane fade" id="content3">
             <h1 class="mb-4 text-center">Parkinson Disease Diagnose</h1>
-            <form method="post" action="{% url 'parkinsons_prediction' %}" class="needs-validation" novalidate>
+            <form method="post" action="{% url 'breast_cancer_prediction' %}" class="needs-validation" novalidate>
                 {% csrf_token %}
                 <div class="row row-cols-1 row-cols-md-5 g-4">
                     {% for feature in feature_names_parkinsons_disease %}

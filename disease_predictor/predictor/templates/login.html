@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - HealthGuardianPro</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link href="style.css" rel="stylesheet">
+</head>
+<style>
+    
+/* Card styling for the login form */
+.login-card {
+  margin-top: 100px;
+  background-color: #ffffff;
+  border: none;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  overflow: hidden; /* Ensures child elements don't overflow */
+  animation: fadeIn 0.5s ease-in-out; /* Fade-in effect */
+}
+
+.login-card .card-title {
+  color: #0056b3;
+  font-weight: bold;
+  margin-bottom: 20px;
+  padding-top: 20px;
+}
+
+/* Form input styling */
+.form-control {
+  border-radius: 20px;
+  border: 2px solid #0056b3;
+  transition: border-color 0.3s; /* Smooth transition for border color */
+}
+
+.form-control:focus {
+  border-color: #009688; /* Change border color on focus */
+  box-shadow: 0 0 8px 0 rgba(0,150,136,0.6); /* Glow effect on focus */
+  outline: none; /* Removes the default focus outline */
+}
+
+/* Button styling */
+.btn-primary {
+  background-color: #009688;
+  border: none;
+  border-radius: 20px;
+  padding: 10px;
+  font-weight: bold;
+  transition: background-color 0.3s; /* Smooth background color transition */
+}
+
+.btn-primary:hover {
+  background-color: #00796b;
+}
+
+/* Fade-in animation for the card */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+</style>
+<body>
+
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card login-card">
+          <h2 class="card-title text-center">Welcome to HealthGuardianPro</h2>
+          <div class="card-body">
+            
+            <form>
+              <div class="form-group">
+                <label for="inputEmail">User Name</label>
+                <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp">
+              </div>
+              
+              <div class="form-group">
+                <label for="inputPassword">Password</label>
+                <input type="password" class="form-control" id="inputPassword">
+              </div>
+              
+              <button type="submit" class="btn btn-primary btn-block">Log In</button>
+            </form>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS, Popper.js, and jQuery -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.4.7/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

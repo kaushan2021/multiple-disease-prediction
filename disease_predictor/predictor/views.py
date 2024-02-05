@@ -76,8 +76,8 @@ def heart_disease_prediction(request):
                 print(f"Could not convert {feature} value to float: {data_value}")
 
            
-        #captured_data = [63,1,3,145,233,1,0,150,0,2.3,0,0,1]
-        captured_data = [67,1,0,120,229,0,0,129,1,2.6,1,2,3]     
+        captured_data = [63,1,3,145,233,1,0,150,0,2.3,0,0,1]
+        #captured_data = [67,1,0,120,229,0,0,129,1,2.6,1,2,3]     
         prediction = predict_heart_disease(captured_data) 
 
         return render(request,'heart_disease_prediction.html',{'prediction': prediction})

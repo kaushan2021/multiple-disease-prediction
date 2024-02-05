@@ -1,40 +1,46 @@
 <style>
-    body {
-        padding-top: 56px;
-        min-height: 100vh;
-    }
-
-    :root {
-        --health-blue: #3498db;
-        --health-dark-blue: #2980b9;
-        --health-light-gray: #ecf0f1;
-    }
-
     .navbar {
-        background-color: var(--health-blue);
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        background-color: #3498db; 
+        padding: 0.5rem 1rem; /* Adjust padding as needed */
     }
-
+    
     .navbar-brand {
-        color: #ffffff;
-        font-weight: bold;
+        color: #0056b3;
+        font-weight: bold; /* Makes the brand name bolder */
+        transition: transform 0.3s ease-in-out; /* Smooth transition for scaling */
     }
-
-    .navbar-toggler-icon,
-    .navbar-toggler-icon:before {
-        color: #ffffff;
+    
+    .navbar-brand:hover {
+        transform: scale(1.1); /* Slightly increase the size on hover */
     }
-
-    .navbar-nav .nav-link {
-        color: #ffffff;
+    
+    .nav-link {
+        margin-right: 10px; /* Spacing between items */
+        color: #555; /* Initial color for nav items */
+        transition: color 0.3s ease-in-out, border-bottom 0.3s ease-in-out; /* Smooth transition for color and border */
+        padding-bottom: 0.25rem; /* Padding to make room for the border */
     }
-
-    .navbar-nav .nav-item.active .nav-link {
-        background-color: var(--health-dark-blue);
-        border-radius: 4px;
+    
+    .nav-link:hover, .nav-link:focus {
+        color: #0056b3; /* Color when hovering over items */
+        border-bottom: 2px solid #0056b3; /* Border under the item for emphasis */
+    }
+    
+    /* Add this class to the <ul> that contains the nav-links for horizontal animation */
+    .navbar-nav {
+        display: flex;
+        padding-left: 0;
+        margin-bottom: 0;
+        list-style: none;
+    }
+    
+    /* Navbar toggle (hamburger) color */
+    .navbar-toggler {
+        border-color: rgba(0,0,0,.1);
     }
 </style>
-
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
     <div class="container-fluid">
         <a class="navbar-brand" href="{% url 'home' %}">
             <i class="fas fa-heartbeat"></i> HealthGuardianPro
@@ -62,7 +68,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" href="#">
-                        <i class="fas fa-user"></i> Profile
+                        <i class="fas fa-info-circle"></i> About
                     </a>
                 </li>
             </ul>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration - HealthGuardianPro</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="style.css" rel="stylesheet">
+</head>
+<style>
+    body {
+        background-color: #f4f4f9;
+        color: #333;
+        font-family: 'Arial', sans-serif;
+    }
+    
+    .registration-form {
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+    
+    .form-title {
+        color: #0056b3;
+        margin-bottom: 20px;
+    }
+    
+    .form-control {
+        margin-bottom: 10px; /* Spacing between form fields */
+    }
+    
+    .btn-primary {
+        padding: 0.5rem 1rem; /* Adjust padding as needed */
+        text-decoration: none; /* Removes underline from links */
+        color: #ffffff; /* White text for the button */
+        background-color: #007bff; /* Bootstrap primary button color */
+        border-color
+    }
+    
+    .navbar {
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        background-color: #3498db; 
+        padding: 0.5rem 1rem; /* Adjust padding as needed */
+    }
+    
+    .navbar-brand {
+        color: #0056b3;
+        font-weight: bold; /* Makes the brand name bolder */
+        transition: transform 0.3s ease-in-out; /* Smooth transition for scaling */
+    }
+    
+    .navbar-brand:hover {
+        transform: scale(1.1); /* Slightly increase the size on hover */
+    }
+    
+    .nav-link {
+        margin-right: 10px; /* Spacing between items */
+        color: #555; /* Initial color for nav items */
+        transition: color 0.3s ease-in-out, border-bottom 0.3s ease-in-out; /* Smooth transition for color and border */
+        padding-bottom: 0.25rem; /* Padding to make room for the border */
+    }
+    
+    .nav-link:hover, .nav-link:focus {
+        color: #0056b3; /* Color when hovering over items */
+        border-bottom: 2px solid #0056b3; /* Border under the item for emphasis */
+    }
+    
+    /* Add this class to the <ul> that contains the nav-links for horizontal animation */
+    .navbar-nav {
+        display: flex;
+        padding-left: 0;
+        margin-bottom: 0;
+        list-style: none;
+    }
+    
+    /* Navbar toggle (hamburger) color */
+    .navbar-toggler {
+        border-color: rgba(0,0,0,.1);
+    }
+</style>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+        <a class="navbar-brand" href="#">HealthGuardianPro</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">User Registration</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Manage Users</a>
+              </li>
+          </ul>
+        </div>
+      </nav>
+    <div class="container mt-5">
+        <!-- Sub-navigation (Tabs) -->
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" href="#patient-form" data-toggle="tab">Patient</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#gp-form" data-toggle="tab">General Practitioner</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#specialist-form" data-toggle="tab">Medical Specialist</a>
+            </li>
+        </ul>
+    
+        <!-- Tab panes for each registration form -->
+        <div class="tab-content">
+            <div class="tab-pane active" id="patient-form">
+                <!-- ... (patient form content) ... -->
+                <div class="registration-form patient-form">
+                    <h2 class="form-title">Patient Registration</h2>
+                    <form>
+                        <input type="text" class="form-control mb-2" placeholder="Name">
+                        <input type="date" class="form-control mb-2" placeholder="Date of Birth">
+                        <select class="form-control mb-2">
+                            <option value="" disabled selected>Gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <input type="text" class="form-control mb-2" placeholder="Address">
+                        <input type="tel" class="form-control mb-2" placeholder="Contact Number">
+                        <input type="text" class="form-control mb-2" placeholder="Username">
+                        <input type="password" class="form-control mb-2" placeholder="Password">
+                        <button type="submit" class="btn btn-primary">Register</button>
+                    </form>
+                </div>
+            </div>
+            
+
+            <div class="tab-pane fade" id="gp-form">
+                <!-- ... (GP form content) ... -->
+                <div class="registration-form gp-form">
+                    <h2 class="form-title">General Practitioner Registration</h2>
+                    <form>
+                        <input type="text" class="form-control mb-2" placeholder="Name">
+                        <input type="text" class="form-control mb-2" placeholder="Username">
+                        <input type="password" class="form-control mb-2" placeholder="Password">
+                        <button type="submit" class="btn btn-primary">Register</button>
+                    </form>
+                </div>
+            </div>
+            
+
+            <div class="tab-pane fade" id="specialist-form">
+                <!-- ... (specialist form content) ... -->
+                <div class="registration-form specialist-form">
+                    <h2 class="form-title">Medical Specialist Registration</h2>
+                    <form>
+                        <input type="text" class="form-control mb-2" placeholder="Name">
+                        <select class="form-control mb-2">
+                            <option value="" disabled selected>Specialist Area</option>
+                            <option value="heart">Heart</option>
+                            <option value="breast_cancer">Breast Cancer</option>
+                            <option value="parkinson">Parkinson's</option>
+                        </select>
+                        <input type="text" class="form-control mb-2" placeholder="Username">
+                        <input type="password" class="form-control mb-2" placeholder="Password">
+                        <button type="submit" class="btn btn-primary">Register</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- Bootstrap JS, Popper.js, and jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.4.7/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+
+
+
