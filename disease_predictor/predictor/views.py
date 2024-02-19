@@ -1,7 +1,10 @@
 # predictor/views.py
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from .ml_model import predict_breast_cancer,predict_heart_disease,predict_parkinsons_disease
+from django.contrib.auth import authenticate, login
+from django.contrib import messages
+
 
 feature_names_breast_cancer = ['mean radius', 'mean texture', 'mean perimeter', 'mean area',
                      'mean smoothness', 'mean compactness', 'mean concavity',
@@ -123,3 +126,22 @@ def heart_disease_info_view(request):
 
 def parkinsons_disease_info_view(request):
     return render(request, 'parkinsons_disease_info.html')
+
+def user_login_form(request):
+    return render(request, 'login.html')
+
+def user_login(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('diagnoser')  # Redirect to home page after login
+        else:
+            messages.error(request, 'Invalid username or password.')
+            return redirect('login_form')  # Redirect back to login page with error message
+    
+    messages.error(request, 'Invalid username or password.')
+    return render(request, 'login_form') 
+
