@@ -122,7 +122,8 @@
                 <!-- ... (patient form content) ... -->
                 <div class="registration-form patient-form">
                     <h2 class="form-title">Patient Registration</h2>
-                    <form>
+                    <form method="post" action="{% url 'create_patient' %}" class="needs-validation" novalidate>
+                        {% csrf_token %}
                         <input type="text" class="form-control mb-2" placeholder="Name">
                         <input type="date" class="form-control mb-2" placeholder="Date of Birth">
                         <select class="form-control mb-2">
@@ -136,11 +137,20 @@
                         <input type="text" class="form-control mb-2" placeholder="Username">
                         <input type="password" class="form-control mb-2" placeholder="Password">
                         <button type="submit" class="btn btn-primary">Register</button>
+                        {% if messages %}
+                        {% for message in messages %}
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                          <strong>Status!</strong>  {{ message }}
+                          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        {% endfor %}
+                        {% endif %}
                     </form>
                 </div>
             </div>
             
-
             <div class="tab-pane fade" id="gp-form">
                 <!-- ... (GP form content) ... -->
                 <div class="registration-form gp-form">

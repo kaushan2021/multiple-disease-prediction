@@ -2,8 +2,9 @@
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from .ml_model import predict_breast_cancer,predict_heart_disease,predict_parkinsons_disease
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login 
 from django.contrib import messages
+from predictor.models import User, PatientProfile, Patient
 
 
 feature_names_breast_cancer = ['mean radius', 'mean texture', 'mean perimeter', 'mean area',
@@ -145,3 +146,39 @@ def user_login(request):
     messages.error(request, 'Invalid username or password.')
     return render(request, 'login_form') 
 
+def user_reg_form(request):
+    return render(request, 'admin_user_reg.html')
+
+def create_patient(request):
+
+    # Create a new Patient object
+    username = 'super'
+    password = 'password123'
+    email = 'flash3@example.com'
+    first_name = 'pool'
+    last_name = 'd'
+    gender = 'female'
+    dob = '1990-01-01'
+    address = '123 Main St, City, Country'
+
+    try:
+        # Create a new User object with the role set to "PATIENT"
+        patient = Patient.objects.create_user(username=username, password=password, email=email, first_name=first_name, last_name=last_name, role=User.Role.PATIENT)
+        # Create a new PatientProfile object associated with the user
+        patient_profile = PatientProfile.objects.create(user=patient, gender=gender, dob=dob, address=address)
+
+        if (patient is not None):
+            messages.success(request, 'User Created successfully!')
+            return redirect('user_reg_form')
+        else:
+            messages.error(request, 'User Creatating Erorr!')
+            return redirect('user_reg_form')
+    except Exception as e:
+        return redirect('user_reg_form')
+
+
+
+
+
+
+    

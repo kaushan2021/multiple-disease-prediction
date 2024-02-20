@@ -13,5 +13,8 @@ urlpatterns = [
     path('parkinsons_disease_info/', views.parkinsons_disease_info_view,name='parkinsons_disease_info'),
     path('login/', views.user_login_form, name='login_form'),
     path('login_authenticate/', views.user_login, name='login'),
+    path('user_reg/', views.user_reg_form, name='user_reg_form'),
+    path('patient_create/', views.create_patient, name='create_patient'),
+
 ]
 
