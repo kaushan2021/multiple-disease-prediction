@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
-from django.db.models.signals import post_save
 
 class User(AbstractUser):
     class Role(models.TextChoices):
@@ -70,6 +69,7 @@ class MedicalSpecialist(User):
 
 class MedicalSpecialistProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    specialis_area = models.CharField(max_length=50, null=True)
 
 
 #GP Model
@@ -94,5 +94,6 @@ class Gp(User):
 
 class GpProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    
 
 

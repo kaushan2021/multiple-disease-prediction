@@ -15,6 +15,9 @@ urlpatterns = [
     path('login_authenticate/', views.user_login, name='login'),
     path('user_reg/', views.user_reg_form, name='user_reg_form'),
     path('patient_create/', views.create_patient, name='create_patient'),
+    path('manage_users/', views.manage_users, name='manage_users'),
+    path('create_gp/', views.create_gp, name='create_gp'),
+    path('gp_reg_form/', views.user_reg_form, name='gp_reg_form'),
 
 ]
 

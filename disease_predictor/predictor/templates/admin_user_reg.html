@@ -4,10 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Registration - HealthGuardianPro</title>
-    <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link href="style.css" rel="stylesheet">
 </head>
 <style>
     body {
@@ -41,67 +38,10 @@
         border-color
     }
     
-    .navbar {
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        background-color: #3498db; 
-        padding: 0.5rem 1rem; /* Adjust padding as needed */
-    }
-    
-    .navbar-brand {
-        color: #0056b3;
-        font-weight: bold; /* Makes the brand name bolder */
-        transition: transform 0.3s ease-in-out; /* Smooth transition for scaling */
-    }
-    
-    .navbar-brand:hover {
-        transform: scale(1.1); /* Slightly increase the size on hover */
-    }
-    
-    .nav-link {
-        margin-right: 10px; /* Spacing between items */
-        color: #555; /* Initial color for nav items */
-        transition: color 0.3s ease-in-out, border-bottom 0.3s ease-in-out; /* Smooth transition for color and border */
-        padding-bottom: 0.25rem; /* Padding to make room for the border */
-    }
-    
-    .nav-link:hover, .nav-link:focus {
-        color: #0056b3; /* Color when hovering over items */
-        border-bottom: 2px solid #0056b3; /* Border under the item for emphasis */
-    }
-    
-    /* Add this class to the <ul> that contains the nav-links for horizontal animation */
-    .navbar-nav {
-        display: flex;
-        padding-left: 0;
-        margin-bottom: 0;
-        list-style: none;
-    }
-    
-    /* Navbar toggle (hamburger) color */
-    .navbar-toggler {
-        border-color: rgba(0,0,0,.1);
-    }
+
 </style>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
-        <a class="navbar-brand" href="#">HealthGuardianPro</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">User Registration</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Manage Users</a>
-              </li>
-          </ul>
-        </div>
-      </nav>
+    {% include 'nav_bar_admin.html' %}
     <div class="container mt-5">
         <!-- Sub-navigation (Tabs) -->
         <ul class="nav nav-tabs">
@@ -116,27 +56,26 @@
             </li>
         </ul>
     
-        <!-- Tab panes for each registration form -->
+        <!-- registration form -->
         <div class="tab-content">
             <div class="tab-pane active" id="patient-form">
-                <!-- ... (patient form content) ... -->
                 <div class="registration-form patient-form">
                     <h2 class="form-title">Patient Registration</h2>
-                    <form method="post" action="{% url 'create_patient' %}" class="needs-validation" novalidate>
+                    <form method="post" action="{% url 'create_patient' %}" class="needs-validation">
                         {% csrf_token %}
-                        <input type="text" class="form-control mb-2" placeholder="Name">
-                        <input type="date" class="form-control mb-2" placeholder="Date of Birth">
-                        <select class="form-control mb-2">
+                        <input type="text" class="form-control mb-2" name="first_name" placeholder="First Name" required>
+                        <input type="text" class="form-control mb-2" name="last_name" placeholder="Last Name" required>
+                        <input type="date" class="form-control mb-2" name="dob" placeholder="Date of Birth" required >
+                        <select class="form-control mb-2" name="gender" placeholder="Gender" required>
                             <option value="" disabled selected>Gender</option>
                             <option value="male">Male</option>
                             <option value="female">Female</option>
                             <option value="other">Other</option>
                         </select>
-                        <input type="text" class="form-control mb-2" placeholder="Address">
-                        <input type="tel" class="form-control mb-2" placeholder="Contact Number">
-                        <input type="text" class="form-control mb-2" placeholder="Username">
-                        <input type="password" class="form-control mb-2" placeholder="Password">
-                        <button type="submit" class="btn btn-primary">Register</button>
+                        <input type="text" class="form-control mb-2" placeholder="Address" name="address" required>
+                        <input type="email" class="form-control mb-2" placeholder="Email" aria-describedby="emailHelp" name="email" required>
+                        <input type="text" class="form-control mb-2" placeholder="Username" name="username" required>
+                        <input type="password" class="form-control mb-2" placeholder="Password" name="password" required>
                         {% if messages %}
                         {% for message in messages %}
                         <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -147,18 +86,31 @@
                         </div>
                         {% endfor %}
                         {% endif %}
+                        <button type="submit" class="btn btn-primary">Register</button>
                     </form>
                 </div>
             </div>
             
             <div class="tab-pane fade" id="gp-form">
-                <!-- ... (GP form content) ... -->
                 <div class="registration-form gp-form">
                     <h2 class="form-title">General Practitioner Registration</h2>
-                    <form>
-                        <input type="text" class="form-control mb-2" placeholder="Name">
-                        <input type="text" class="form-control mb-2" placeholder="Username">
-                        <input type="password" class="form-control mb-2" placeholder="Password">
+                    <form method="post" action="{% url 'create_gp' %}" class="needs-validation">
+                        {% csrf_token %}
+                        <input type="text" class="form-control mb-2" name="first_name" placeholder="First Name" required>
+                        <input type="text" class="form-control mb-2" name="last_name" placeholder="Last Name" required>
+                        <input type="email" class="form-control mb-2" placeholder="Email" aria-describedby="emailHelp" name="email" required>
+                        <input type="text" class="form-control mb-2" placeholder="Username" name="username" required>
+                        <input type="password" class="form-control mb-2" placeholder="Password" name="password" required>
+                        {% if messages %}
+                        {% for message in messages %}
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                          <strong>Status!</strong>  {{ message }}
+                          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        {% endfor %}
+                        {% endif %}
                         <button type="submit" class="btn btn-primary">Register</button>
                     </form>
                 </div>
@@ -166,7 +118,6 @@
             
 
             <div class="tab-pane fade" id="specialist-form">
-                <!-- ... (specialist form content) ... -->
                 <div class="registration-form specialist-form">
                     <h2 class="form-title">Medical Specialist Registration</h2>
                     <form>
@@ -189,6 +140,14 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.4.7/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    {% if request.resolver_match.url_name == 'gp_reg_form' %}
+            // Get the GP form tab link
+        var gpFormTabLink = document.querySelector('a[href="#gp-form"]');
+            // Trigger a click event on the link to switch to the GP form tab
+        gpFormTabLink.click();
+    {% endif %}
+</script>
 </body>
 </html>
 
