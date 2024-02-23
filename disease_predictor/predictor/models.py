@@ -56,7 +56,7 @@ class MedicalSpecialistManager(BaseUserManager):
 
 class MedicalSpecialist(User):
 
-    base_role = User.Role.GP
+    base_role = User.Role.MEDICAL_SPECIALIST
 
     Medical_Specialist = MedicalSpecialistManager()
 

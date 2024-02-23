@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from .ml_model import predict_breast_cancer,predict_heart_disease,predict_parkinsons_disease
 from django.contrib.auth import authenticate, login 
 from django.contrib import messages
-from predictor.models import User, PatientProfile, Patient,Gp,MedicalSpecialist
+from predictor.models import User, PatientProfile, Patient,Gp,MedicalSpecialist,MedicalSpecialistProfile
 from predictor.util import is_user_name_unique
 
 
@@ -221,6 +221,39 @@ def create_gp(request):
     else:
         messages.error(request, 'something went wrong!')
         return redirect('gp_reg_form')
+
+def create_medical_specialist(request):
+
+    if request.method == 'POST':
+
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
+        email = request.POST.get('email')
+        specialist_area = request.POST.get('specialist_area')
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        uniqueUserName = is_user_name_unique(username)
+        
+        if uniqueUserName:
+            try:
+                medical_specialist = MedicalSpecialist.objects.create_user(username=username, password=password, email=email, first_name=first_name, last_name=last_name, role=User.Role.MEDICAL_SPECIALIST)
+                medical_specialist_profile = MedicalSpecialistProfile.objects.create(user=medical_specialist, specialis_area=specialist_area)
+                if (medical_specialist is not None and medical_specialist_profile is not None):
+                    messages.success(request, 'User Created successfully!')
+                    return redirect('medical_specialist_reg_form')
+                else:
+                    messages.error(request, 'User Creatating Erorr!')
+                    return redirect('medical_specialist_reg_form')
+            except Exception as e:
+                return redirect('medical_specialist_reg_form')
+        else:
+            messages.error(request, 'this user name is alrady taken Try another one!')
+            return redirect('medical_specialist_reg_form')
+
+    else:
+        messages.error(request, 'something went wrong!')
+        return redirect('medical_specialist_reg_form')
 
 def manage_users(request):
 

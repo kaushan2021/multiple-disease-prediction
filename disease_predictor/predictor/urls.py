@@ -18,6 +18,8 @@ urlpatterns = [
     path('manage_users/', views.manage_users, name='manage_users'),
     path('create_gp/', views.create_gp, name='create_gp'),
     path('gp_reg_form/', views.user_reg_form, name='gp_reg_form'),
+    path('medical_specialist_create/', views.create_medical_specialist, name='create_medical_specialist'),
+    path('medical_specialist_reg_form/', views.user_reg_form, name='medical_specialist_reg_form'),
 
 ]
 

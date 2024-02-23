@@ -96,11 +96,11 @@
                     <h2 class="form-title">General Practitioner Registration</h2>
                     <form method="post" action="{% url 'create_gp' %}" class="needs-validation">
                         {% csrf_token %}
-                        <input type="text" class="form-control mb-2" name="first_name" placeholder="First Name" required>
-                        <input type="text" class="form-control mb-2" name="last_name" placeholder="Last Name" required>
-                        <input type="email" class="form-control mb-2" placeholder="Email" aria-describedby="emailHelp" name="email" required>
-                        <input type="text" class="form-control mb-2" placeholder="Username" name="username" required>
-                        <input type="password" class="form-control mb-2" placeholder="Password" name="password" required>
+                            <input type="text" class="form-control mb-2" name="first_name" placeholder="First Name" required>
+                            <input type="text" class="form-control mb-2" name="last_name" placeholder="Last Name" required>
+                            <input type="email" class="form-control mb-2" placeholder="Email" aria-describedby="emailHelp" name="email" required>
+                            <input type="text" class="form-control mb-2" placeholder="Username" name="username" required>
+                            <input type="password" class="form-control mb-2" placeholder="Password" name="password" required>
                         {% if messages %}
                         {% for message in messages %}
                         <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -120,31 +120,45 @@
             <div class="tab-pane fade" id="specialist-form">
                 <div class="registration-form specialist-form">
                     <h2 class="form-title">Medical Specialist Registration</h2>
-                    <form>
-                        <input type="text" class="form-control mb-2" placeholder="Name">
-                        <select class="form-control mb-2">
+                    <form method="post" action="{% url 'create_medical_specialist' %}" class="needs-validation">
+                        {% csrf_token %}
+                        <input type="text" class="form-control mb-2" name="first_name" placeholder="First Name" required>
+                        <input type="text" class="form-control mb-2" name="last_name" placeholder="Last Name" required>
+                        <input type="email" class="form-control mb-2" placeholder="Email" aria-describedby="emailHelp" name="email" required>
+                        <select class="form-control mb-2" name="specialist_area">
                             <option value="" disabled selected>Specialist Area</option>
                             <option value="heart">Heart</option>
                             <option value="breast_cancer">Breast Cancer</option>
                             <option value="parkinson">Parkinson's</option>
                         </select>
-                        <input type="text" class="form-control mb-2" placeholder="Username">
-                        <input type="password" class="form-control mb-2" placeholder="Password">
+                        <input type="text" class="form-control mb-2" placeholder="Username" name="username" required>
+                        <input type="password" class="form-control mb-2" placeholder="Password" name="password" required>
+                        {% if messages %}
+                        {% for message in messages %}
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                          <strong>Status!</strong>  {{ message }}
+                          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        {% endfor %}
+                        {% endif %}
                         <button type="submit" class="btn btn-primary">Register</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-<!-- Bootstrap JS, Popper.js, and jQuery -->
+
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.4.7/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script>
     {% if request.resolver_match.url_name == 'gp_reg_form' %}
-            // Get the GP form tab link
-        var gpFormTabLink = document.querySelector('a[href="#gp-form"]');
-            // Trigger a click event on the link to switch to the GP form tab
+    var gpFormTabLink = document.querySelector('a[href="#gp-form"]');
+    gpFormTabLink.click();
+    {% elif request.resolver_match.url_name == 'medical_specialist_reg_form' %}
+        var gpFormTabLink = document.querySelector('a[href="#specialist-form"]');
         gpFormTabLink.click();
     {% endif %}
 </script>
