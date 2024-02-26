@@ -1,11 +1,12 @@
 # predictor/views.py
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render,get_object_or_404
 from django.http import HttpResponse
 from .ml_model import predict_breast_cancer,predict_heart_disease,predict_parkinsons_disease
 from django.contrib.auth import authenticate, login 
 from django.contrib import messages
 from predictor.models import User, PatientProfile, Patient,Gp,MedicalSpecialist,MedicalSpecialistProfile
 from predictor.util import is_user_name_unique
+from django.core.serializers import serialize
 
 
 feature_names_breast_cancer = ['mean radius', 'mean texture', 'mean perimeter', 'mean area',
@@ -32,10 +33,16 @@ feature_names_parkinsons_disease = [
 ]
 
 
-def home_view(request):
+def gp_home_view(request):
     return render(request, 'home.html')
 
 def diagnoser_view(request):
+    userId = request.GET.get('userId')
+    if userId != None:
+         user = get_object_or_404(User, id=userId)
+
+    
+
     return render(request, 'diagnoser.html', {'feature_names_breast_cancer': feature_names_breast_cancer ,'feature_names_heart_disease':feature_names_heart_disease,'feature_names_parkinsons_disease':feature_names_parkinsons_disease})
 
 def breast_cancer_prediction(request):
@@ -139,7 +146,7 @@ def user_login(request):
         user = authenticate(username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('diagnoser')  # Redirect to home page after login
+            return redirect('gp_home')  # Redirect to home page after login
         else:
             messages.error(request, 'Invalid username or password.')
             return redirect('login_form')  # Redirect back to login page with error message
@@ -189,8 +196,6 @@ def create_patient(request):
         return redirect('user_reg_form')
         
         
-
-    
 def create_gp(request):
 
     if request.method == 'POST':
@@ -259,6 +264,26 @@ def manage_users(request):
 
     users = User.objects.all()
     return render(request, 'manage_users.html', {'users': users})
+
+def delete_user(request,user_id):
+    if request.method == 'POST':
+        try:
+            user = User.objects.get(id=user_id)
+            user.delete()
+            messages.success(request, 'User deleted successfully!')
+        except User.DoesNotExist:
+            messages.error(request, 'User not found!')
+        return redirect('manage_users')
+    messages.error(request, 'Request Went Wrong!')
+    return redirect('manage_users')
+
+def admin_home_view(request):
+    return render(request, 'admin_home.html')
+
+def gp_patient_select(request):
+    patients = User.objects.filter(role='PATIENT')
+    patients_json = serialize('json', patients, fields=('username', 'first_name', 'last_name'))
+    return render(request, 'gp_patient_select.html', {'patients_json': patients_json})
 
 
 
