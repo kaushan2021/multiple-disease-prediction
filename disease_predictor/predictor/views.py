@@ -299,8 +299,16 @@ def log_out(request):
     logout(request)
     return redirect('login_form')
 
+def patient_home(request):
+    return render(request, 'patient_home.html')
 
+def patient_notification(request):
+    return render(request, 'patient_notification.html')
 
+def patient_appointment_scheduler(request):
+    return render(request, 'appointment_scheduler.html')
 
+def desease_education(request):
+    return render(request, 'desease_education.html')
 
     

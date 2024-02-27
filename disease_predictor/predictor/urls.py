@@ -24,6 +24,10 @@ urlpatterns = [
     path('admin_home/', views.admin_home_view, name='admin_home_view'),
     path('gp_patient_select/', views.gp_patient_select, name='gp_patient_select'),
     path('logout/', views.log_out, name='logout'),
+    path('patient_home/', views.patient_home, name='patient_home'),
+    path('patient_notification/', views.patient_notification, name='patient_notification'),
+    path('patient_appointment_scheduler/', views.patient_appointment_scheduler, name='patient_appointment_scheduler'),
+    path('desease_education/', views.desease_education, name='desease_education'),
 
 ]
 
