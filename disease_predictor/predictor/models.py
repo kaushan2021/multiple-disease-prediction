@@ -94,6 +94,16 @@ class Gp(User):
 
 class GpProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+class Report(models.Model):
+    report_id = models.AutoField(primary_key=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    disease_type = models.CharField(max_length=100)
+    result = models.TextField(max_length=50)
+    created_date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Report ID: {self.report_id}, User: {self.user.username}, Disease Type: {self.disease_type}"    
     
 
 

@@ -23,6 +23,7 @@ urlpatterns = [
     path('delete_user/<int:user_id>/', views.delete_user, name='delete_user'),
     path('admin_home/', views.admin_home_view, name='admin_home_view'),
     path('gp_patient_select/', views.gp_patient_select, name='gp_patient_select'),
+    path('logout/', views.log_out, name='logout'),
 
 ]
 

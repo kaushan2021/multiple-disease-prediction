@@ -2,11 +2,13 @@
 from django.shortcuts import redirect, render,get_object_or_404
 from django.http import HttpResponse
 from .ml_model import predict_breast_cancer,predict_heart_disease,predict_parkinsons_disease
-from django.contrib.auth import authenticate, login 
+from django.contrib.auth import authenticate, login ,logout
 from django.contrib import messages
-from predictor.models import User, PatientProfile, Patient,Gp,MedicalSpecialist,MedicalSpecialistProfile
+from predictor.models import User, PatientProfile, Patient,Gp,MedicalSpecialist,MedicalSpecialistProfile,Report
 from predictor.util import is_user_name_unique
 from django.core.serializers import serialize
+from .enums import DiseaseType,PredictionResult
+from datetime import datetime
 
 
 feature_names_breast_cancer = ['mean radius', 'mean texture', 'mean perimeter', 'mean area',
@@ -39,11 +41,9 @@ def gp_home_view(request):
 def diagnoser_view(request):
     userId = request.GET.get('userId')
     if userId != None:
-         user = get_object_or_404(User, id=userId)
-
-    
-
-    return render(request, 'diagnoser.html', {'feature_names_breast_cancer': feature_names_breast_cancer ,'feature_names_heart_disease':feature_names_heart_disease,'feature_names_parkinsons_disease':feature_names_parkinsons_disease})
+        patient = get_object_or_404(User, id=userId)
+        patientId = patient.pk
+    return render(request, 'diagnoser.html', {'feature_names_breast_cancer': feature_names_breast_cancer ,'feature_names_heart_disease':feature_names_heart_disease,'feature_names_parkinsons_disease':feature_names_parkinsons_disease,'patient_id':userId})
 
 def breast_cancer_prediction(request):
     if request.method == 'POST':
@@ -90,7 +90,17 @@ def heart_disease_prediction(request):
            
         captured_data = [63,1,3,145,233,1,0,150,0,2.3,0,0,1]
         #captured_data = [67,1,0,120,229,0,0,129,1,2.6,1,2,3]     
-        prediction = predict_heart_disease(captured_data) 
+        prediction = predict_heart_disease(captured_data)
+
+        try:
+            userId = request.POST.get('patient_id')
+            if userId != None:
+                patient = get_object_or_404(User, id=userId)
+            report = Report.objects.create(user=patient,disease_type=DiseaseType.HEART,result=PredictionResult.POSITIVE,created_date=datetime.now())
+            report.save()
+        except (ValueError, TypeError): 
+               print(f"Could not convert {feature} value to float: {data_value}")
+
 
         return render(request,'heart_disease_prediction.html',{'prediction': prediction})
         #return HttpResponse("Data captured successfully!\n" + str(captured_data)+result)
@@ -285,7 +295,9 @@ def gp_patient_select(request):
     patients_json = serialize('json', patients, fields=('username', 'first_name', 'last_name'))
     return render(request, 'gp_patient_select.html', {'patients_json': patients_json})
 
-
+def log_out(request):
+    logout(request)
+    return redirect('login_form')
 
 
 

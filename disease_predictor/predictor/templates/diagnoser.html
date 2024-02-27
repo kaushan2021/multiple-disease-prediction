@@ -65,7 +65,6 @@
         border-color: #2980b9;
     }
 </style>
-
 <div class="container">
     <ul class="nav nav-tabs justify-content-center">
         <li class="nav-item">
@@ -90,6 +89,7 @@
             <h1 class="mb-4 text-center">Breast Cancer Diagnose</h1>
             <form method="post" action="{% url 'breast_cancer_prediction' %}" class="needs-validation" novalidate>
                 {% csrf_token %}
+                <input type="hidden" id="patient_id" name="patient_id" value="{{ patient_id }}">
                 <div class="row row-cols-1 row-cols-md-5 g-4">
                     {% for feature in feature_names_breast_cancer %}
                         <div class="col">
@@ -116,6 +116,7 @@
             <h1 class="mb-4 text-center">Heart Disease Diagnose</h1>
             <form method="post" action="{% url 'heart_disease_prediction' %}" class="needs-validation" novalidate>
                 {% csrf_token %}
+                <input type="hidden" id="patient_id" name="patient_id" value="{{ patient_id }}">
                 <div class="row row-cols-1 row-cols-md-5 g-4">
                     {% for feature in feature_names_heart_disease %}
                         <div class="col">
@@ -142,6 +143,7 @@
             <h1 class="mb-4 text-center">Parkinson Disease Diagnose</h1>
             <form method="post" action="{% url 'breast_cancer_prediction' %}" class="needs-validation" novalidate>
                 {% csrf_token %}
+                <input type="hidden" id="patient_id" name="patient_id" value="{{ patient_id }}">
                 <div class="row row-cols-1 row-cols-md-5 g-4">
                     {% for feature in feature_names_parkinsons_disease %}
                         <div class="col">
