@@ -7,8 +7,6 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link href="style.css" rel="stylesheet">
 </head>
 <style>
     body {
@@ -61,23 +59,19 @@
 <div class="container mt-5">
    <h2 class="page-title">Notifications</h2>
     <div class="notifications-list">
-        <!-- Notification Item -->
+        {% for report in patient_reports %}
         <div class="notification-item">
             <i class="fas fa-bell "></i>
-            <h5 class="notification-title">Medical Check-up Results 1</h5>
-            <p class="notification-date">Date: 2024-01-15</p>
-            <p class="notification-message">Your Medical check-up results are ready. Please log in to your patient portal to view the detailed report.</p>
-            <a href="#link-to-result" class="btn btn-primary view-result-btn">View Result</a>
+            <h5 class="notification-title">Medical Check-up for {{ report.disease_type }}</h5>
+            <p class="notification-date">Date: {{ report.created_date }}</p>
+            <p class="notification-message">Your Medical check-up results are ready. Please click the View Result below to view the detailed report.</p>
+            <form method="post" action="{% url 'patient_report_result'%}" >
+                {% csrf_token %}
+                <input type='hidden' value="{{ report.report_id }}" name="report_id">
+                <button type="submit" class="btn btn-primary view-result-btn" >View Result</button>
+            </form>
         </div>
-        <!-- More notifications... -->
-        <div class="notification-item">
-            <i class="fas fa-bell "></i>
-            <h5 class="notification-title">Medical Check-up Results 2</h5>
-            <p class="notification-date">Date: 2024-01-15</p>
-            <p class="notification-message">Your Medical check-up results are ready. Please log in to your patient portal to view the detailed report.</p>
-            <a href="#link-to-result" class="btn btn-primary view-result-btn">View Result</a>
-        </div>
-        
+        {% endfor %}      
     </div>
 </div>
 

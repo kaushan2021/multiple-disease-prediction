@@ -44,27 +44,18 @@
     }
 </style>
 <body>
-
     <div class="container medical-container">
         <div class="medical-header">
             <h2>Diagnosis Result</h2>
         </div>
         {% if prediction == 0 %}
         <div class="result-container">
-            <p class="result-text-nagative"> Parkinson Diagnosis: Negative - No immediate concerns</p>
-            <div class="action-buttons">
-                <a href="{% url 'parkinsons_disease_info' %}" class="btn btn-warning">More info</a>
-            </div>
+            <p class="result-text-nagative"> Parkinson Diagnosis: Negative</p>
         </div>
         {%else%}
         <div class="result-container">
-            <p class="result-text-positive">Parkinson Diagnosis: Positive - Please consult with a healthcare professional </p>
-            <div class="action-buttons">
-                <a href="{% url 'parkinsons_disease_info' %}" class="btn btn-warning">More info</a>
-                <a href="{% url 'specialist_consultant' %}" class="btn btn-success">Consult a Doctor</a>
-            </div>
+            <p class="result-text-positive">Parkinson Diagnosis: Positive</p>
         </div>
         {% endif %}
     </div>
-
 </body>

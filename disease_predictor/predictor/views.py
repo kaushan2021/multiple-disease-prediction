@@ -51,20 +51,32 @@ def breast_cancer_prediction(request):
         captured_data = []
 
         for feature in feature_names_breast_cancer:
-            # Retrieve data from POST request using feature names
             data_value = request.POST.get(feature)
 
             try:
                 data_value_float = float(data_value)
                 captured_data.append(data_value_float)
             except (ValueError, TypeError):
-                # Handle the case where conversion to float fails
                 print(f"Could not convert {feature} value to float: {data_value}")
 
            
         canser_data = [13.28, 20.28, 87.32, 545.2, 0.1041, 0.1436, 0.09847, 0.06158, 0.1974, 0.06782, 0.3704, 0.8249, 2.427, 31.33, 0.005072, 0.02147, 0.02185, 0.00956, 0.01719, 0.003317, 17.38, 28, 113.1, 907.2, 0.153, 0.3724, 0.3664, 0.1492, 0.3739, 0.1027]
         non_canser_data =[8.196, 16.84, 51.71, 201.9, 0.086, 0.05943, 0.01588, 0.005917, 0.1769, 0.06503, 0.1563, 0.9567, 1.094, 8.205, 0.008968, 0.01646, 0.01588, 0.005917, 0.02574, 0.002582, 8.964, 21.96, 57.26, 242.2, 0.1297, 0.1357, 0.0688, 0.02564, 0.3105, 0.07409]        
         prediction = predict_breast_cancer(canser_data) 
+
+        if prediction == 0:
+            prediction_result = PredictionResult.POSITIVE
+        else:
+            prediction_result = PredictionResult.NEGATIVE
+
+        try:
+            userId = request.POST.get('patient_id')
+            if userId != None:
+                patient = get_object_or_404(User, id=userId)
+            report = Report.objects.create(user=patient,disease_type=DiseaseType.BREAST,result=prediction_result,created_date=datetime.now())
+            report.save()
+        except (ValueError, TypeError): 
+               print(f"Could not convert {feature} value to float: {data_value}")
 
         return render(request,'breast_cancer_prediction.html',{'prediction': prediction})
         #return HttpResponse("Data captured successfully!\n" + str(captured_data)+result)
@@ -77,14 +89,12 @@ def heart_disease_prediction(request):
         captured_data = []
 
         for feature in feature_names_heart_disease:
-            # Retrieve data from POST request using feature names
             data_value = request.POST.get(feature)
 
             try:
                 data_value_float = float(data_value)
                 captured_data.append(data_value_float)
             except (ValueError, TypeError):
-                # Handle the case where conversion to float fails
                 print(f"Could not convert {feature} value to float: {data_value}")
 
            
@@ -92,11 +102,16 @@ def heart_disease_prediction(request):
         #captured_data = [67,1,0,120,229,0,0,129,1,2.6,1,2,3]     
         prediction = predict_heart_disease(captured_data)
 
+        if prediction ==1:
+            prediction_result = PredictionResult.POSITIVE
+        else:
+            prediction_result = PredictionResult.NEGATIVE
+
         try:
             userId = request.POST.get('patient_id')
             if userId != None:
                 patient = get_object_or_404(User, id=userId)
-            report = Report.objects.create(user=patient,disease_type=DiseaseType.HEART,result=PredictionResult.POSITIVE,created_date=datetime.now())
+            report = Report.objects.create(user=patient,disease_type=DiseaseType.HEART,result=prediction_result,created_date=datetime.now())
             report.save()
         except (ValueError, TypeError): 
                print(f"Could not convert {feature} value to float: {data_value}")
@@ -113,20 +128,32 @@ def parkinsons_prediction(request):
         captured_data = []
 
         for feature in feature_names_heart_disease:
-            # Retrieve data from POST request using feature names
             data_value = request.POST.get(feature)
 
             try:
                 data_value_float = float(data_value)
                 captured_data.append(data_value_float)
             except (ValueError, TypeError):
-                # Handle the case where conversion to float fails
                 print(f"Could not convert {feature} value to float: {data_value}")
 
            
         #captured_data = [197.07600,206.89600,192.05500,0.00289,0.00001,0.00166,0.00168,0.00498,0.01098,0.09700,0.00563,0.00680,0.00802,0.01689,0.00339,26.77500,0.422229,0.741367,-7.348300,0.177551,1.743867,0.085569]
         captured_data = [150.44000, 163.44100, 144.73600, 0.00396, 0.00003, 0.00206, 0.00233, 0.00619, 0.02551, 0.23700, 0.01321, 0.01574, 0.02148, 0.03964, 0.00611, 23.13300, 0.352396, 0.759320, -6.261446, 0.183218, 2.264226, 0.144105]     
         prediction = predict_parkinsons_disease(captured_data) 
+
+        if prediction == 1:
+            prediction_result = PredictionResult.POSITIVE
+        else:
+            prediction_result = PredictionResult.NEGATIVE
+
+        try:
+            userId = request.POST.get('patient_id')
+            if userId != None:
+                patient = get_object_or_404(User, id=userId)
+            report = Report.objects.create(user=patient,disease_type=DiseaseType.PARKINSON,result=prediction_result,created_date=datetime.now())
+            report.save()
+        except (ValueError, TypeError): 
+               print(f"Could not convert {feature} value to float: {data_value}")
 
         return render(request,'parkinsons_disease_prediction.html',{'prediction': prediction})
         #return HttpResponse("Data captured successfully!\n" + str(captured_data)+result)
@@ -156,7 +183,17 @@ def user_login(request):
         user = authenticate(username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('gp_home')  # Redirect to home page after login
+            if user.role == 'ADMIN':
+                return redirect('admin_home_view')
+            elif user.role == 'GP':
+                return redirect('gp_home')
+            elif user.role == 'PATIENT':
+                return redirect('patient_home')
+            elif user.role == 'MEDICAL_SPECIALIST':
+                return redirect('gp_home')
+            else:
+                messages.error(request, 'Invalid User.')
+                return redirect('login_form')
         else:
             messages.error(request, 'Invalid username or password.')
             return redirect('login_form')  # Redirect back to login page with error message
@@ -303,12 +340,28 @@ def patient_home(request):
     return render(request, 'patient_home.html')
 
 def patient_notification(request):
-    return render(request, 'patient_notification.html')
+    if request.user.is_authenticated:
+        user_id = request.user.id
+        patient_reports = Report.objects.filter(user_id=user_id).order_by('-created_date')
+    return render(request, 'patient_notification.html',{'patient_reports': patient_reports})
 
 def patient_appointment_scheduler(request):
     return render(request, 'appointment_scheduler.html')
 
 def desease_education(request):
     return render(request, 'desease_education.html')
+
+def patient_report_result(request):
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            reportId = request.POST.get('report_id')
+            patient_reports = Report.objects.filter(report_id=reportId)
+            patient_report = patient_reports.first()
+            return render(request, 'patient_report.html',{'report': patient_report})
+    else:
+        messages.error(request, 'please login!')
+        return redirect('login_form')
+
+
 
     
