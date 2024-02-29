@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Appointment Form - HealthGuardianPro</title>
-    <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <style>
@@ -76,53 +74,50 @@
             <div class="col-md-8 offset-md-2">
                 <div class="appointment-form">
                     <h2 class="appointment-heading">Schedule Your Appointment</h2>
-                    
-                    <form>
-                        <!-- Patient Name -->
+                    <form method="post" action="{% url 'appointment_scheduler' %}" class="needs-validation">
+                        {% csrf_token %}
                         <div class="form-group">
                             <label for="patientName">Patient Name:</label>
-                            <input type="text" class="form-control" id="patientName" required>
+                            <input type="text" class="form-control" id="patientName" name="patient_name" required>
                         </div>
 
-                        <!-- Date of Birth -->
-                        <div class="form-group">
-                            <label for="dateOfBirth">Date of Birth:</label>
-                            <input type="date" class="form-control" id="dateOfBirth" required>
-                        </div>
-
-                        <!-- Contact Number -->
                         <div class="form-group">
                             <label for="contactNumber">Contact Number:</label>
-                            <input type="tel" class="form-control" id="contactNumber" required>
+                            <input type="tel" class="form-control" id="contactNumber" name="contact_number" required>
                         </div>
 
-                        <!-- Specialist Type -->
                         <div class="form-group">
                             <label for="specialistType">Specialist Type:</label>
-                            <select class="form-control" id="specialistType">
+                            <select class="form-control" id="specialistType" name="specialist_type" required>
                                 <option>Breast Cancer Specialist</option>
                                 <option>Heart Health Specialist</option>
                                 <option>Parkinson's Specialist</option>
                             </select>
                         </div>
 
-                        <!-- Appointment Date -->
                         <div class="form-group">
-                            <label for="appointmentDate">Appointment Date:</label>
-                            <input type="date" class="form-control" id="appointmentDate" required>
+                            <label for="appointmentDate">Appointment Date Time:</label>
+                            <input type="datetime-local" class="form-control" id="appointmentDate" name="appointment_date" required>
                         </div>
-
+                        {% if messages %}
+                        {% for message in messages %}
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                          <strong>Status!</strong>  {{ message }}
+                          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        {% endfor %}
+                        {% endif %}
                         <div class="text-center"> 
                             <button type="submit" class="btn btn-primary">Schedule Appointment</button>
                         </div>
-
                     </form>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Bootstrap JS, Popper.js, and jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.4.7/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

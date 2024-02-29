@@ -55,7 +55,7 @@
     <div class="report-card">
         <h2 class="report-title">Health Report</h2>
         <div class="patient-info">
-            <p><strong>Patient Name:</strong> {{report.user_id}}</p>
+            <p><strong>Patient Name:</strong> {{report.user.first_name}} {{report.user.last_name}}</p>
             <p><strong>Clinic Name:</strong> MedHealth Clinic</p>
             <p><strong>Date:</strong> {{ report.created_date }}</p>
             <p><strong>Disease :</strong> {{ report.disease_type }} Disease</p>

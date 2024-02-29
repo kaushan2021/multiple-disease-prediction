@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login - HealthGuardianPro</title>
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <style>
     
@@ -65,7 +66,7 @@
     <div class="row justify-content-center">
       <div class="col-md-6">
         <div class="card login-card">
-          <h2 class="card-title text-center">Welcome to HealthGuardianPro</h2>
+          <h2 class="card-title text-center"><i class="fas fa-heartbeat"></i> HealthGuardianPro</h2>
           <div class="card-body">
             <form method="post" action="{% url 'login' %}" class="needs-validation" novalidate>
               {% csrf_token %}

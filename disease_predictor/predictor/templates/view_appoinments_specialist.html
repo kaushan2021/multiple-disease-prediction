@@ -4,10 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View Appointments - HealthGuardianPro</title>
-    <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link href="style.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
 </head>
 <style>
@@ -72,67 +69,10 @@
     .btn-search:hover {
         background-color: #004080; /* Darker shade for hover effect */
         color: white;
-    }
-
-    .navbar {
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        background-color: #ffffff; /* Light background for the navbar */
-        padding: 0.5rem 1rem; /* Adjust padding as needed */
-    }
-    
-    .navbar-brand {
-        color: #0056b3;
-        font-weight: bold; /* Makes the brand name bolder */
-        transition: transform 0.3s ease-in-out; /* Smooth transition for scaling */
-    }
-    
-    .navbar-brand:hover {
-        transform: scale(1.1); /* Slightly increase the size on hover */
-    }
-    
-    .nav-link {
-        margin-right: 10px; /* Spacing between items */
-        color: #555; /* Initial color for nav items */
-        transition: color 0.3s ease-in-out, border-bottom 0.3s ease-in-out; /* Smooth transition for color and border */
-        padding-bottom: 0.25rem; /* Padding to make room for the border */
-    }
-    
-    .nav-link:hover, .nav-link:focus {
-        color: #0056b3; /* Color when hovering over items */
-        border-bottom: 2px solid #0056b3; /* Border under the item for emphasis */
-    }
-    
-    /* Add this class to the <ul> that contains the nav-links for horizontal animation */
-    .navbar-nav {
-        display: flex;
-        padding-left: 0;
-        margin-bottom: 0;
-        list-style: none;
-    }
-    
-    /* Navbar toggle (hamburger) color */
-    .navbar-toggler {
-        border-color: rgba(0,0,0,.1);
-    }
-    
+    }    
 </style>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
-        <a class="navbar-brand" href="#">HealthGuardianPro</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Appointments</a>
-            </li>
-          </ul>
-        </div>
-      </nav>
+    {% include 'specialist_nav_bar.html' %}
 <div class="container mt-5">
     <div class="row">
         <div class="col-md-12">
@@ -151,32 +91,29 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th scope="col">#</th>
+                            <th scope="col">Id</th>
                             <th scope="col">Patient Name</th>
                             <th scope="col">Date of Birth</th>
                             <th scope="col">Contact Number</th>
-                            <th scope="col">Specialist Type</th>
-                            <th scope="col">Appointment Date</th>
+                            <th scope="col">Appointment DateTime</th>
                             <th scope="col">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- Appointment Details Rows -->
-                        <!-- Example Row -->
+                        {% for appointment in appoinments %}
                         <tr>
-                            <th scope="row">1</th>
-                            <td>John Doe</td>
-                            <td>01/01/1990</td>
-                            <td>123-456-7890</td>
-                            <td>Heart Health Specialist</td>
-                            <td>01/15/2024</td>
+                            <td>{{ appointment.id }}</td>
+                            <td>{{ appointment.user.first_name }} {{ appointment.user.last_name }}</td>
+                            <td>{{ appointment.user.patientprofile.dob }}</td>
+                            <td>{{ appointment.contact_number}}</td>
+                            <td>{{ appointment.appointment_date }}</td>
                             <td>
                                 <button class="btn btn-primary btn-sm">Medical history</button>
                                 <button class="btn btn-info btn-sm">Reports</button>
                                 <button class="btn btn-danger btn-sm">Cancel</button>
                             </td>
                         </tr>
-                        <!-- Add more rows as needed -->
+                        {% endfor %}
                     </tbody>
                 </table>
             </div>

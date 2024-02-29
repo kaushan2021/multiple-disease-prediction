@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from .ml_model import predict_breast_cancer,predict_heart_disease,predict_parkinsons_disease
 from django.contrib.auth import authenticate, login ,logout
 from django.contrib import messages
-from predictor.models import User, PatientProfile, Patient,Gp,MedicalSpecialist,MedicalSpecialistProfile,Report
+from predictor.models import User, PatientProfile, Patient,Gp,MedicalSpecialist,MedicalSpecialistProfile,Report,Appointment
 from predictor.util import is_user_name_unique
 from django.core.serializers import serialize
 from .enums import DiseaseType,PredictionResult
@@ -190,13 +190,13 @@ def user_login(request):
             elif user.role == 'PATIENT':
                 return redirect('patient_home')
             elif user.role == 'MEDICAL_SPECIALIST':
-                return redirect('gp_home')
+                return redirect('specialist_home')
             else:
                 messages.error(request, 'Invalid User.')
                 return redirect('login_form')
         else:
             messages.error(request, 'Invalid username or password.')
-            return redirect('login_form')  # Redirect back to login page with error message
+            return redirect('login_form') 
     
     messages.error(request, 'Invalid username or password.')
     return render(request, 'login_form') 
@@ -362,6 +362,38 @@ def patient_report_result(request):
         messages.error(request, 'please login!')
         return redirect('login_form')
 
+def appointment_scheduler(request):
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            patient_name = request.POST.get('patient_name')
+            contact_number = request.POST.get('contact_number')
+            specialist_type = request.POST.get('specialist_type')
+            appointment_date_str = request.POST.get('appointment_date')
+            userId = request.user.id
+            appointment_date = datetime.strptime(appointment_date_str, "%Y-%m-%dT%H:%M")
 
+            try:    
+                user = get_object_or_404(User, id=userId)
+                report = Appointment.objects.create(user=user,patient_name = patient_name, specialist_type = specialist_type,contact_number=contact_number, appointment_date =appointment_date,created_date=datetime.now())
+                report.save()
+                messages.success(request, 'Your appointment is scheduled!')
+                return redirect('patient_appointment_scheduler')
+               
+            except (ValueError, TypeError): 
+                print(f"Error value {ValueError} Error type: {TypeError}")
+                messages.error(request, 'Something Went Wrong!')
+                return redirect('patient_appointment_scheduler')        
+    else:
+        messages.error(request, 'please login!')
+        return redirect('login_form')
 
-    
+def specialist_home(request):
+    return render(request, 'specialist_home.html')
+
+def specialist_appoinments(request):
+    if request.user.is_authenticated:
+        appoinments = Appointment.objects.all()
+        return render(request, 'view_appoinments_specialist.html',{'appoinments': appoinments})
+    else:
+        messages.error(request, 'please login!')
+        return redirect('login_form')

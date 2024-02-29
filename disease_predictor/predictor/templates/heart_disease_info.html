@@ -1,65 +1,94 @@
 <div id="base">
     {% include 'base.html' %}
-</div>
-
+</div> 
 <div id="nav_bar">
     {% include 'nav_bar.html' %}
-</div>
+</div>  
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manual</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
 <style>
     body {
-        background-color: #f8f9fa; /* Light gray background */
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fa;
+      color: #333;
     }
 
-    .medical-container {
-        background-color: #ffffff; /* White container background */
-        border-radius: 10px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        padding: 20px;
-        margin: 20px auto;
-        max-width: 800px;
+    .container {
+      margin-top: 50px;
     }
 
-    .medical-header {
-        background-color: #dc3545; /* Medical theme red for heart disease */
-        color: #ffffff;
-        padding: 10px;
-        text-align: center;
-        border-radius: 8px 8px 0 0;
+    h1 {
+      text-align: center;
+      color: #007bff;
     }
 
-    .info-text {
-        margin-top: 20px;
-        font-size: 1.2em;
+    .list-group {
+      margin-top: 30px;
     }
 
-    .useful-links {
-        margin-top: 30px;
-        text-align: center;
+    .list-group-item {
+      border: none;
+      border-radius: 0;
+      background-color: #fff;
+      margin-bottom: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
 
-    .useful-links a {
-        display: block;
-        margin-bottom: 10px;
-        color: #dc3545; /* Medical theme red for links */
+    .list-group-item:hover {
+      background-color: #f1f1f1;
     }
-</style>
-
-<div class="container medical-container">
-    <div class="medical-header">
-        <h2>Heart Disease Information</h2>
-    </div>
-
-    <div class="info-text">
-        <p>Heart disease, or cardiovascular disease, refers to a range of conditions that affect the heart and blood vessels. It is a leading cause of morbidity and mortality worldwide.</p>
-        <p>Common types include Coronary Artery Disease (CAD), heart failure, arrhythmias, and valvular heart disease.</p>
-        <p>Understanding the causes, recognizing symptoms, and adopting a healthy lifestyle are crucial for prevention and management.</p>
-    </div>
-
-    <div class="useful-links">
-        <h4>Useful Links</h4>
-        <a href="https://www.heart.org/" target="_blank">American Heart Association</a>
-        <a href="https://www.mayoclinic.org/diseases-conditions/heart-disease" target="_blank">Mayo Clinic - Heart Disease</a>
-        <a href="https://www.cdc.gov/heartdisease/index.htm" target="_blank">Centers for Disease Control and Prevention - Heart Disease</a>
-    </div>
-</div>
+  </style>
+<body>
+  <div class="container">
+    <h1>Dictionary</h1>
+    <ul class="list-group">
+        <li class="list-group-item">
+            <strong>Age:</strong> The age of the individual, typically measured in years.
+          </li>
+          <li class="list-group-item">
+            <strong>Sex:</strong> The biological sex of the individual, often categorized as male or female.
+          </li>
+          <li class="list-group-item">
+            <strong>CP (Chest Pain):</strong> This refers to the type of chest pain experienced by the individual, often categorized into different levels of severity.
+          </li>
+          <li class="list-group-item">
+            <strong>Trestbps (Resting Blood Pressure):</strong> The individual's blood pressure measured at rest, typically in millimeters of mercury (mmHg).
+          </li>
+          <li class="list-group-item">
+            <strong>Chol (Cholesterol):</strong> The level of cholesterol in the individual's blood, usually measured in milligrams per deciliter (mg/dL).
+          </li>
+          <li class="list-group-item">
+            <strong>Fbs (Fasting Blood Sugar):</strong> The level of glucose (sugar) in the individual's blood after fasting, often measured in milligrams per deciliter (mg/dL).
+          </li>
+          <li class="list-group-item">
+            <strong>Restecg (Resting Electrocardiographic Results):</strong> The results of an electrocardiogram (ECG/EKG) taken while the individual is at rest, which measures the electrical activity of the heart.
+          </li>
+          <li class="list-group-item">
+            <strong>Thalach (Maximum Heart Rate Achieved):</strong> The highest heart rate achieved during exercise or stress testing.
+          </li>
+          <li class="list-group-item">
+            <strong>Exang (Exercise-Induced Angina):</strong> A binary indicator (often 1 for yes, 0 for no) indicating whether the individual experiences angina (chest pain) during exercise.
+          </li>
+          <li class="list-group-item">
+            <strong>Oldpeak (ST Depression Induced by Exercise Relative to Rest):</strong> The amount of depression in the ST segment of the ECG during exercise compared to rest, which can indicate myocardial ischemia.
+          </li>
+          <li class="list-group-item">
+            <strong>Slope:</strong> The slope of the ST segment during exercise, which can provide further information about the presence and severity of coronary artery disease.
+          </li>
+          <li class="list-group-item">
+            <strong>CA (Number of Major Vessels Colored by Fluoroscopy):</strong> The number of major blood vessels (coronary arteries) colored by a dye during a fluoroscopy procedure, indicating potential blockages or stenosis.
+          </li>
+          <li class="list-group-item">
+            <strong>Thal (Thalassemia):</strong> A type of blood disorder that can affect oxygen transport in the body, often categorized into different types or severities.
+          </li>
+      </ul>
+  </div>
+</body>
+</html>

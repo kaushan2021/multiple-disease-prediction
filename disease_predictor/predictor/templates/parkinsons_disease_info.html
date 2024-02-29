@@ -1,65 +1,121 @@
 <div id="base">
     {% include 'base.html' %}
-</div>
-
+</div> 
 <div id="nav_bar">
     {% include 'nav_bar.html' %}
-</div>
+</div>  
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manual</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
 <style>
     body {
-        background-color: #f8f9fa; /* Light gray background */
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fa;
+      color: #333;
     }
 
-    .medical-container {
-        background-color: #ffffff; /* White container background */
-        border-radius: 10px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        padding: 20px;
-        margin: 20px auto;
-        max-width: 800px;
+    .container {
+      margin-top: 50px;
     }
 
-    .medical-header {
-        background-color: #17a2b8; /* Medical theme teal for Parkinson's disease */
-        color: #ffffff;
-        padding: 10px;
-        text-align: center;
-        border-radius: 8px 8px 0 0;
+    h1 {
+      text-align: center;
+      color: #007bff;
     }
 
-    .info-text {
-        margin-top: 20px;
-        font-size: 1.2em;
+    .list-group {
+      margin-top: 30px;
     }
 
-    .useful-links {
-        margin-top: 30px;
-        text-align: center;
+    .list-group-item {
+      border: none;
+      border-radius: 0;
+      background-color: #fff;
+      margin-bottom: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
 
-    .useful-links a {
-        display: block;
-        margin-bottom: 10px;
-        color: #17a2b8; /* Medical theme teal for links */
+    .list-group-item:hover {
+      background-color: #f1f1f1;
     }
-</style>
-
-<div class="container medical-container">
-    <div class="medical-header">
-        <h2>Parkinson's Disease Information</h2>
-    </div>
-
-    <div class="info-text">
-        <p>Parkinson's disease is a neurodegenerative disorder that affects movement control. It develops gradually, and its symptoms may include tremors, stiffness, and difficulty with balance and coordination.</p>
-        <p>The primary cause is the loss of dopamine-producing cells in the brain. While there is no cure for Parkinson's disease, various treatments can help manage symptoms and improve quality of life.</p>
-        <p>Early diagnosis, medication, physical therapy, and lifestyle modifications are key components of Parkinson's disease management.</p>
-    </div>
-
-    <div class="useful-links">
-        <h4>Useful Links</h4>
-        <a href="https://www.parkinson.org/" target="_blank">Parkinson's Foundation</a>
-        <a href="https://www.michaeljfox.org/" target="_blank">Michael J. Fox Foundation for Parkinson's Research</a>
-        <a href="https://www.ninds.nih.gov/Disorders/Patient-Caregiver-Education/Hope-Through-Research/Parkinsons-Disease-Hope-Through-Research" target="_blank">National Institute of Neurological Disorders and Stroke - Parkinson's Disease</a>
-    </div>
-</div>
+  </style>
+<body>
+  <div class="container">
+    <h1>Dictionary</h1>
+    <ul class="list-group">
+        <li class="list-group-item">
+            <strong>MDVP:Fo(Hz):</strong> This represents the fundamental frequency of the voice signal, measured in Hertz (Hz). It indicates the lowest frequency component in the voice signal.
+          </li>
+          <li class="list-group-item">
+            <strong>MDVP:Fhi(Hz):</strong> This denotes the highest frequency component in the voice signal, measured in Hertz (Hz). It represents the maximum frequency observed in the voice signal.
+          </li>
+          <li class="list-group-item">
+            <strong>MDVP:Flo(Hz):</strong> This represents the lowest frequency component in the voice signal, measured in Hertz (Hz). It indicates the minimum frequency observed in the voice signal.
+          </li>
+          <li class="list-group-item">
+            <strong>MDVP:Jitter(%):</strong> Jitter refers to the variation in the periodicity of the voice signal. This parameter measures the percentage variation in the fundamental frequency.
+          </li>
+          <li class="list-group-item">
+            <strong>MDVP:Jitter(Abs):</strong> Absolute jitter measures the absolute difference in the inter-pulse intervals of consecutive cycles of the voice signal.
+          </li>
+          <li class="list-group-item">
+            <strong>MDVP:RAP:</strong> RAP stands for Relative Average Perturbation, which is another measure of the variation in the fundamental frequency. It's calculated based on the average absolute difference between consecutive cycles.
+          </li>
+          <li class="list-group-item">
+            <strong>MDVP:PPQ:</strong> PPQ stands for five-point period perturbation quotient. It's another measure of the variation in the fundamental frequency, calculated based on the average absolute difference between consecutive cycles.
+          </li>
+          <li class="list-group-item">
+            <strong>Jitter:DDP:</strong> This is the Jitter DDP (Jitter: DDP) value, which stands for Jitter: Differenced Displacement of consecutive Periods. It's a measure of the variation in the fundamental frequency, calculated as three times the difference between consecutive cycles' absolute differences.
+          </li>
+          <li class="list-group-item">
+            <strong>MDVP:Shimmer:</strong> Shimmer is a measure of the variation in the amplitude of the voice signal. It indicates the variability in the peak-to-peak amplitude of consecutive cycles.
+          </li>
+          <li class="list-group-item">
+            <strong>MDVP:Shimmer(dB):</strong> This is Shimmer in decibels (dB), which is a measure of the variation in the amplitude of the voice signal, expressed in logarithmic scale.
+          </li>
+          <li class="list-group-item">
+            <strong>Shimmer:APQ3:</strong> APQ3 stands for Amplitude Perturbation Quotient 3. It's a measure of the variation in the amplitude of the voice signal, calculated based on the average absolute difference in the amplitudes of consecutive cycles.
+          </li>
+          <li class="list-group-item">
+            <strong>Shimmer:APQ5:</strong> APQ5 stands for Amplitude Perturbation Quotient 5. It's another measure of the variation in the amplitude of the voice signal, calculated based on the average absolute difference in the amplitudes of consecutive cycles.
+          </li>
+          <li class="list-group-item">
+            <strong>MDVP:APQ:</strong> APQ stands for Amplitude Perturbation Quotient, which is a measure of the variation in the amplitude of the voice signal, calculated based on the average absolute difference in the amplitudes of consecutive cycles.
+          </li>
+          <li class="list-group-item">
+            <strong>Shimmer:DDA:</strong> DDA stands for Difference in Amplitude between consecutive cycles, calculated as the average absolute difference in the amplitudes of consecutive cycles.
+          </li>
+          <li class="list-group-item">
+            <strong>NHR:</strong> NHR stands for Noise-to-Harmonics Ratio. It's a measure of the ratio between the noise component and the harmonic component in the voice signal.
+          </li>
+          <li class="list-group-item">
+            <strong>HNR:</strong> HNR stands for Harmonics-to-Noise Ratio. It's a measure of the ratio between the harmonic component and the noise component in the voice signal.
+          </li>
+          <li class="list-group-item">
+            <strong>RPDE:</strong> RPDE stands for Recurrence Period Density Entropy, which is a measure of the predictability of a time series. In voice analysis, it reflects the complexity of the voice signal.
+          </li>
+          <li class="list-group-item">
+            <strong>DFA:</strong> DFA stands for Detrended Fluctuation Analysis, which is a method used to analyze the fractal properties of time series data. In voice analysis, it's used to characterize the long-range correlation properties of the voice signal.
+          </li>
+          <li class="list-group-item">
+            <strong>spread1:</strong> This is one of the acoustic measures used in voice analysis, representing a measure of nonlinear features in the voice signal.
+          </li>
+          <li class="list-group-item">
+            <strong>spread2:</strong> Similar to spread1, spread2 is another acoustic measure used in voice analysis, representing another aspect of nonlinear features in the voice signal.
+          </li>
+          <li class="list-group-item">
+            <strong>D2:</strong> D2 is a nonlinear measure used in voice analysis, representing another aspect of the complexity of the voice signal.
+          </li>
+          <li class="list-group-item">
+            <strong>PPE:</strong> PPE stands for Pitch Period Entropy, which is a measure of the regularity or predictability of the pitch period in the voice signal. It reflects the variability in the pitch of the voice.
+          </li>
+      </ul>
+  </div>
+</body>
+</html>

@@ -29,6 +29,9 @@ urlpatterns = [
     path('patient_appointment_scheduler/', views.patient_appointment_scheduler, name='patient_appointment_scheduler'),
     path('desease_education/', views.desease_education, name='desease_education'),
     path('patient_report_result/', views.patient_report_result, name='patient_report_result'),
+    path('appointment_scheduler/', views.appointment_scheduler, name='appointment_scheduler'),
+    path('specialist_home/', views.specialist_home, name='specialist_home'),
+    path('specialist_appoinments/', views.specialist_appoinments, name='specialist_appoinments'),
 
 ]
 

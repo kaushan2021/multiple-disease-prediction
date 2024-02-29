@@ -86,7 +86,8 @@
 
     <div class="tab-content">
         <div class="tab-pane fade show active" id="content1">
-            <h1 class="mb-4 text-center">Breast Cancer Diagnose</h1>
+            <a href="{% url 'breast_cancer_info' %}"><i class="fas fa-info-circle"></i></a>
+            <h1 class="mb-4 text-center">Breast Cancer Diagnose</h1>    
             <form method="post" action="{% url 'breast_cancer_prediction' %}" class="needs-validation" novalidate>
                 {% csrf_token %}
                 <input type="hidden" id="patient_id" name="patient_id" value="{{ patient_id }}">
@@ -113,6 +114,7 @@
             </form>
         </div>
         <div class="tab-pane fade" id="content2">
+            <a href="{% url 'heart_disease_info' %}"><i class="fas fa-info-circle"></i></a>
             <h1 class="mb-4 text-center">Heart Disease Diagnose</h1>
             <form method="post" action="{% url 'heart_disease_prediction' %}" class="needs-validation" novalidate>
                 {% csrf_token %}
@@ -140,6 +142,7 @@
             </form>
         </div>
         <div class="tab-pane fade" id="content3">
+            <a href="{% url 'heart_disease_info' %}"><i class="fas fa-info-circle"></i></a>
             <h1 class="mb-4 text-center">Parkinson Disease Diagnose</h1>
             <form method="post" action="{% url 'parkinsons_prediction' %}" class="needs-validation" novalidate>
                 {% csrf_token %}

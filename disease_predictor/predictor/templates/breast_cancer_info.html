@@ -5,60 +5,81 @@
     {% include 'nav_bar.html' %}
 </div>  
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manual</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
 <style>
     body {
-        background-color: #f8f9fa; /* Light gray background */
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fa;
+      color: #333;
     }
 
-    .medical-container {
-        background-color: #ffffff; /* White container background */
-        border-radius: 10px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        padding: 20px;
-        margin: 20px auto;
-        max-width: 800px;
+    .container {
+      margin-top: 50px;
     }
 
-    .medical-header {
-        background-color: #007bff; /* Medical theme blue */
-        color: #ffffff;
-        padding: 10px;
-        text-align: center;
-        border-radius: 8px 8px 0 0;
+    h1 {
+      text-align: center;
+      color: #007bff;
     }
 
-    .info-text {
-        margin-top: 20px;
-        font-size: 1.2em;
+    .list-group {
+      margin-top: 30px;
     }
 
-    .useful-links {
-        margin-top: 30px;
-        text-align: center;
+    .list-group-item {
+      border: none;
+      border-radius: 0;
+      background-color: #fff;
+      margin-bottom: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
 
-    .useful-links a {
-        display: block;
-        margin-bottom: 10px;
-        color: #007bff; /* Medical theme blue for links */
+    .list-group-item:hover {
+      background-color: #f1f1f1;
     }
-</style>
-
-<div class="container medical-container">
-    <div class="medical-header">
-        <h2>Breast Cancer Information</h2>
-    </div>
-
-    <div class="info-text">
-        <p>Breast cancer is a type of cancer that begins in the cells of the breast. It can occur in both men and women, but it is far more common in women.</p>
-        <p>Common symptoms include a lump in the breast, changes in breast size or shape, and changes in the skin over the breast.</p>
-        <p>Early detection and advances in treatment have improved the outlook for people with breast cancer. Treatment may include surgery, radiation, and chemotherapy.</p>
-    </div>
-
-    <div class="useful-links">
-        <h4>Useful Links</h4>
-        <a href="https://www.cancer.org/cancer/breast-cancer.html" target="_blank">American Cancer Society - Breast Cancer</a>
-        <a href="https://www.breastcancer.org/" target="_blank">Breastcancer.org</a>
-        <a href="https://www.nationalbreastcancer.org/" target="_blank">National Breast Cancer Foundation</a>
-    </div>
-</div>
+  </style>
+<body>
+  <div class="container">
+    <h1>Dictionary</h1>
+    <ul class="list-group">
+        <li class="list-group-item"><strong>Mean Radius:</strong> The average distance from the center to points on the perimeter of the tumor.</li>
+        <li class="list-group-item"><strong>Mean Texture:</strong> The average variation in grayscale intensity of the pixels in the image.</li>
+        <li class="list-group-item"><strong>Mean Perimeter:</strong> The average length of the tumor's boundary.</li>
+        <li class="list-group-item"><strong>Mean Area:</strong> The average size of the tumor's area.</li>
+        <li class="list-group-item"><strong>Mean Smoothness:</strong> The average smoothness of the tumor boundary, representing local variations in radius lengths.</li>
+        <li class="list-group-item"><strong>Mean Compactness:</strong> A measure of how compact the shape of the tumor is, calculated as perimeter^2 / area - 1.0.</li>
+        <li class="list-group-item"><strong>Mean Concavity:</strong> The severity of concave portions of the tumor contour.</li>
+        <li class="list-group-item"><strong>Mean Concave Points:</strong> The number of concave portions of the tumor contour.</li>
+        <li class="list-group-item"><strong>Mean Symmetry:</strong> A measure of symmetry of the tumor.</li>
+        <li class="list-group-item"><strong>Mean Fractal Dimension:</strong> A measure of the complexity of the tumor's perimeter.</li>
+        <li class="list-group-item"><strong>Radius Error:</strong> The standard error of the mean of distances from the center to points on the perimeter.</li>
+        <li class="list-group-item"><strong>Texture Error:</strong> The standard error of grayscale intensity variation.</li>
+        <li class="list-group-item"><strong>Perimeter Error:</strong> The standard error of the length of the tumor's boundary.</li>
+        <li class="list-group-item"><strong>Area Error:</strong> The standard error of the size of the tumor's area.</li>
+        <li class="list-group-item"><strong>Smoothness Error:</strong> The standard error of smoothness.</li>
+        <li class="list-group-item"><strong>Compactness Error:</strong> The standard error of compactness.</li>
+        <li class="list-group-item"><strong>Concavity Error:</strong> The standard error of concavity.</li>
+        <li class="list-group-item"><strong>Concave Points Error:</strong> The standard error of the number of concave portions.</li>
+        <li class="list-group-item"><strong>Symmetry Error:</strong> The standard error of symmetry.</li>
+        <li class="list-group-item"><strong>Fractal Dimension Error:</strong> The standard error of fractal dimension.</li>
+        <li class="list-group-item"><strong>Worst Radius:</strong> The maximum radius found among the mean distances from the center to points on the perimeter.</li>
+        <li class="list-group-item"><strong>Worst Texture:</strong> The maximum value of variation in grayscale intensity.</li>
+        <li class="list-group-item"><strong>Worst Perimeter:</strong> The maximum length of the tumor's boundary.</li>
+        <li class="list-group-item"><strong>Worst Area:</strong> The maximum size of the tumor's area.</li>
+        <li class="list-group-item"><strong>Worst Smoothness:</strong> The maximum smoothness of the tumor boundary.</li>
+        <li class="list-group-item"><strong>Worst Compactness:</strong> The maximum compactness of the tumor.</li>
+        <li class="list-group-item"><strong>Worst Concavity:</strong> The maximum severity of concave portions of the tumor.</li>
+        <li class="list-group-item"><strong>Worst Concave Points:</strong> The maximum number of concave portions of the tumor.</li>
+        <li class="list-group-item"><strong>Worst Symmetry:</strong> The maximum symmetry of the tumor.</li>
+        <li class="list-group-item"><strong>Worst Fractal Dimension:</strong> The maximum complexity of the tumor's perimeter.</li>
+      </ul>
+  </div>
+</body>
+</html>

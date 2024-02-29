@@ -105,5 +105,14 @@ class Report(models.Model):
     def __str__(self):
         return f"Report ID: {self.report_id}, User: {self.user.username}, Disease Type: {self.disease_type}"    
     
+class Appointment(models.Model):
+    id = models.AutoField(primary_key=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    patient_name = models.CharField(max_length=200)
+    specialist_type = models.CharField(max_length=200)
+    contact_number = models.TextField(max_length=25)
+    created_date = models.DateTimeField(auto_now_add=True)
+    appointment_date = models.DateTimeField()
 
+   
 
