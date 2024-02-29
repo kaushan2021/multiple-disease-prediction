@@ -5,35 +5,10 @@ from .ml_model import predict_breast_cancer,predict_heart_disease,predict_parkin
 from django.contrib.auth import authenticate, login ,logout
 from django.contrib import messages
 from predictor.models import User, PatientProfile, Patient,Gp,MedicalSpecialist,MedicalSpecialistProfile,Report,Appointment
-from predictor.util import is_user_name_unique
+from predictor.util import is_user_name_unique ,feature_names_breast_cancer,feature_names_heart_disease,feature_names_parkinsons_disease
 from django.core.serializers import serialize
 from .enums import DiseaseType,PredictionResult
 from datetime import datetime
-
-
-feature_names_breast_cancer = ['mean radius', 'mean texture', 'mean perimeter', 'mean area',
-                     'mean smoothness', 'mean compactness', 'mean concavity',
-                     'mean concave points', 'mean symmetry', 'mean fractal dimension',
-                     'radius error', 'texture error', 'perimeter error', 'area error',
-                     'smoothness error', 'compactness error', 'concavity error',
-                     'concave points error', 'symmetry error', 'fractal dimension error',
-                     'worst radius', 'worst texture', 'worst perimeter', 'worst area',
-                     'worst smoothness', 'worst compactness', 'worst concavity',
-                     'worst concave points', 'worst symmetry', 'worst fractal dimension']
-
-feature_names_heart_disease = [
-    'age', 'sex', 'cp', 'trestbps', 'chol', 'fbs', 'restecg', 'thalach',
-    'exang', 'oldpeak', 'slope', 'ca', 'thal'
-]
-
-feature_names_parkinsons_disease = [
-    'MDVP:Fo(Hz)', 'MDVP:Fhi(Hz)', 'MDVP:Flo(Hz)', 'MDVP:Jitter(%)',
-    'MDVP:Jitter(Abs)', 'MDVP:RAP', 'MDVP:PPQ', 'Jitter:DDP',
-    'MDVP:Shimmer', 'MDVP:Shimmer(dB)', 'Shimmer:APQ3', 'Shimmer:APQ5',
-    'MDVP:APQ', 'Shimmer:DDA', 'NHR', 'HNR', 'RPDE', 'DFA',
-    'spread1', 'spread2', 'D2', 'PPE'
-]
-
 
 def gp_home_view(request):
     return render(request, 'home.html')
@@ -79,7 +54,6 @@ def breast_cancer_prediction(request):
                print(f"Could not convert {feature} value to float: {data_value}")
 
         return render(request,'breast_cancer_prediction.html',{'prediction': prediction})
-        #return HttpResponse("Data captured successfully!\n" + str(captured_data)+result)
 
     return HttpResponse("Invalid request method. Only POST requests are allowed.")
 
@@ -98,8 +72,8 @@ def heart_disease_prediction(request):
                 print(f"Could not convert {feature} value to float: {data_value}")
 
            
-        captured_data = [63,1,3,145,233,1,0,150,0,2.3,0,0,1]
-        #captured_data = [67,1,0,120,229,0,0,129,1,2.6,1,2,3]     
+        #captured_data = [63,1,3,145,233,1,0,150,0,2.3,0,0,1]
+        captured_data = [67,1,0,120,229,0,0,129,1,2.6,1,2,3]     
         prediction = predict_heart_disease(captured_data)
 
         if prediction ==1:
@@ -118,7 +92,6 @@ def heart_disease_prediction(request):
 
 
         return render(request,'heart_disease_prediction.html',{'prediction': prediction})
-        #return HttpResponse("Data captured successfully!\n" + str(captured_data)+result)
 
     return HttpResponse("Invalid request method. Only POST requests are allowed.")
 
@@ -156,7 +129,6 @@ def parkinsons_prediction(request):
                print(f"Could not convert {feature} value to float: {data_value}")
 
         return render(request,'parkinsons_disease_prediction.html',{'prediction': prediction})
-        #return HttpResponse("Data captured successfully!\n" + str(captured_data)+result)
 
     return HttpResponse("Invalid request method. Only POST requests are allowed.")
 
@@ -221,9 +193,7 @@ def create_patient(request):
         
         if uniqueUserName:
             try:
-                # Create a new User object with the role set to "PATIENT"
                 patient = Patient.objects.create_user(username=username, password=password, email=email, first_name=first_name, last_name=last_name, role=User.Role.PATIENT)
-                # Create a new PatientProfile object associated with the user
                 patient_profile = PatientProfile.objects.create(user=patient, gender=gender, dob=dob, address=address)
 
                 if (patient is not None and patient_profile is not None):
@@ -317,11 +287,9 @@ def delete_user(request,user_id):
         try:
             user = User.objects.get(id=user_id)
             user.delete()
-            messages.success(request, 'User deleted successfully!')
         except User.DoesNotExist:
             messages.error(request, 'User not found!')
         return redirect('manage_users')
-    messages.error(request, 'Request Went Wrong!')
     return redirect('manage_users')
 
 def admin_home_view(request):

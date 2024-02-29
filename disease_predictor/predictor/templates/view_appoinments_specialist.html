@@ -1,3 +1,5 @@
+{% if request.user.is_authenticated %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -148,3 +150,13 @@
 </script>
 </body>
 </html>
+    
+{% else %}
+<div class="text-center"> 
+    <div class="alert alert-warning py-4" role="alert"> 
+        <h4 class="mb-0">You are not logged in.</h4> 
+    </div>
+    <a href="{% url 'login_form' %}" class="btn btn-primary btn-lg mt-3">Login</a>
+</div>
+{% endif %}
+
