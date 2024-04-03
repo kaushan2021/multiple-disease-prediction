@@ -7,41 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Registration - HealthGuardianPro</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'admin_user_reg.css' %}">
 </head>
-<style>
-    body {
-        background-color: #f4f4f9;
-        color: #333;
-        font-family: 'Arial', sans-serif;
-    }
-    
-    .registration-form {
-        background-color: #ffffff;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        padding: 20px;
-        margin-bottom: 20px;
-    }
-    
-    .form-title {
-        color: #0056b3;
-        margin-bottom: 20px;
-    }
-    
-    .form-control {
-        margin-bottom: 10px; /* Spacing between form fields */
-    }
-    
-    .btn-primary {
-        padding: 0.5rem 1rem; /* Adjust padding as needed */
-        text-decoration: none; /* Removes underline from links */
-        color: #ffffff; /* White text for the button */
-        background-color: #007bff; /* Bootstrap primary button color */
-        border-color
-    }
-    
 
-</style>
 <body>
     {% include 'nav_bar_admin.html' %}
     <div class="container mt-5">

@@ -8,71 +8,10 @@
     <title>View Appointments - HealthGuardianPro</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'view_appoinments_specialist.css' %}">
 </head>
-<style>
-    body {
-        background-color: #f4f4f9;
-        color: #333;
-        font-family: 'Arial', sans-serif;
-    }
-    
-    h2 {
-        color: #0056b3;
-    }
-    
-    .table {
-        background-color: #fff;
-        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    }
-    
-    th, td {
-        vertical-align: middle !important; /* Aligns content of table cells */
-    }
-    
-    .btn-sm {
-        margin-right: 5px; /* Adds spacing between buttons */
-    }
-    
-    /* Responsive adjustments */
-    @media (max-width: 768px) {
-        .btn-sm {
-            margin-bottom: 5px;
-            margin-right: 0;
-        }
-    }
 
-    .search-form {
-        margin-bottom: 1rem;
-        display: flex;
-        justify-content: center;
-    }
-
-    .search-input-group {
-        width: auto; /* Adjust width as needed */
-        max-width: 400px; /* Maximum width */
-    }
-
-    .input-group-text {
-        background-color: #0056b3; /* Match the primary color */
-        color: white;
-        border: none;
-    }
-
-    .form-control {
-        border-right: none; /* Removes the border between the input and the button */
-    }
-
-    .btn-search {
-        background-color: #0056b3; /* Match the primary color */
-        color: white;
-        border: none;
-    }
-    
-    .btn-search:hover {
-        background-color: #004080; /* Darker shade for hover effect */
-        color: white;
-    }    
-</style>
 <body>
     {% include 'specialist_nav_bar.html' %}
 <div class="container mt-5">

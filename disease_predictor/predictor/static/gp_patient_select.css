@@ -1,0 +1,27 @@
+body {
+    background-color: #f8f9fa;
+  }
+  .container {
+    margin-top: 50px;
+  }
+  .form-group {
+    margin-bottom: 30px;
+  }
+  .form-control {
+    border-radius: 25px;
+  }
+  .result-container {
+    background-color: white;
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid #ced4da;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  .result-item {
+    padding: 10px;
+    cursor: pointer;
+  }
+  .result-item:hover {
+    background-color: #f8f9fa;
+  }

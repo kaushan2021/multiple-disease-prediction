@@ -8,67 +8,11 @@
     <title>Appointment Form - HealthGuardianPro</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'appointment_scheduler.css' %}">
 </head>
-<style>
-    body {
-        background-color: #f4f4f9;
-        font-family: 'Arial', sans-serif;
-    }
 
-    .appointment-form {
-        background-color: #ffffff;
-        border-radius: 10px;
-        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        padding: 20px;
-        animation: fadeIn 0.5s ease-in-out;
-    }
-
-    .appointment-form h2 {
-        color: #0056b3;
-        font-size: 24px;
-        margin-bottom: 25px;
-    }
-
-    .form-control {
-        border-radius: 20px;
-        border: 1px solid #d1d1d1;
-        transition: border-color 0.3s;
-    }
-
-    .form-control:focus {
-        border-color: #009688;
-        box-shadow: 0 0 8px 0 rgba(0,150,136,0.3);
-        outline: none;
-    }
-
-    .btn-primary {
-        background-color: #009688;
-        border: none;
-        border-radius: 20px;
-        padding: 10px 30px;
-        font-weight: bold;
-        transition: background-color 0.3s;
-    }
-
-    .btn-primary:hover {
-        background-color: #00796b;
-    }
-
-    .appointment-heading {
-        color: #0056b3;
-        font-size: 28px;
-        font-weight: bold;
-        text-align: center;
-        margin-bottom: 30px;
-    }
-
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(20px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-</style>
 <body>
-    <!-- Include navbar -->
     {% include 'patient_nav_bar.html' %}
 
     <div class="container mt-5">

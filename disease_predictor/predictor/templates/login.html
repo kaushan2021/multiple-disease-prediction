@@ -6,62 +6,11 @@
   <title>Login - HealthGuardianPro</title>
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'login.css' %}">
 </head>
-<style>
-    
-.login-card {
-  margin-top: 100px;
-  background-color: #ffffff;
-  border: none;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  border-radius: 8px;
-  overflow: hidden; /* Ensures child elements don't overflow */
-  animation: fadeIn 0.5s ease-in-out; /* Fade-in effect */
-}
 
-.login-card .card-title {
-  color: #0056b3;
-  font-weight: bold;
-  margin-bottom: 20px;
-  padding-top: 20px;
-}
-
-/* Form input styling */
-.form-control {
-  border-radius: 20px;
-  border: 2px solid #0056b3;
-  transition: border-color 0.3s; /* Smooth transition for border color */
-}
-
-.form-control:focus {
-  border-color: #009688; /* Change border color on focus */
-  box-shadow: 0 0 8px 0 rgba(0,150,136,0.6); /* Glow effect on focus */
-  outline: none; /* Removes the default focus outline */
-}
-
-/* Button styling */
-.btn-primary {
-  background-color: #009688;
-  border: none;
-  border-radius: 20px;
-  padding: 10px;
-  font-weight: bold;
-  transition: background-color 0.3s; /* Smooth background color transition */
-}
-
-.btn-primary:hover {
-  background-color: #00796b;
-}
-
-/* Fade-in animation for the card */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-</style>
 <body>
-
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-6">

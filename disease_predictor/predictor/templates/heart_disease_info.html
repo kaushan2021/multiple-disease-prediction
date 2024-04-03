@@ -1,6 +1,5 @@
 {% if request.user.is_authenticated %}
 
-
 <div id="base">
     {% include 'base.html' %}
 </div> 
@@ -14,40 +13,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Manual</title>
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'user_manual.css' %}">
 </head>
-<style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f8f9fa;
-      color: #333;
-    }
 
-    .container {
-      margin-top: 50px;
-    }
-
-    h1 {
-      text-align: center;
-      color: #007bff;
-    }
-
-    .list-group {
-      margin-top: 30px;
-    }
-
-    .list-group-item {
-      border: none;
-      border-radius: 0;
-      background-color: #fff;
-      margin-bottom: 10px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    }
-
-    .list-group-item:hover {
-      background-color: #f1f1f1;
-    }
-  </style>
 <body>
   <div class="container">
     <h1>Dictionary</h1>
