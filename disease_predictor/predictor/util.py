@@ -1,3 +1,4 @@
+from datetime import datetime
 from predictor.models import User
 
 feature_names_breast_cancer = ['mean radius', 'mean texture', 'mean perimeter', 'mean area',
@@ -11,7 +12,7 @@ feature_names_breast_cancer = ['mean radius', 'mean texture', 'mean perimeter', 
                      'worst concave points', 'worst symmetry', 'worst fractal dimension']
 
 feature_names_heart_disease = [
-    'age', 'sex', 'cp', 'trestbps', 'chol', 'fbs', 'restecg', 'thalach',
+    'cp', 'trestbps', 'chol', 'fbs', 'restecg', 'thalach',
     'exang', 'oldpeak', 'slope', 'ca', 'thal'
 ]
 
@@ -29,4 +30,8 @@ def is_user_name_unique(username):
     return username not in all_usernames
     
 
+def calculate_age(birth_date):
+    today = datetime.now()
+    age = today.year - birth_date.year - ((today.month, today.day) < (birth_date.month, birth_date.day))
+    return age
 

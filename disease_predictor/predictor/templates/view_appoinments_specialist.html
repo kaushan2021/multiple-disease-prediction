@@ -1,5 +1,5 @@
 {% if request.user.is_authenticated %}
-
+{% include 'specialist_nav_bar.html' %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,12 +8,9 @@
     <title>View Appointments - HealthGuardianPro</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
-    {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'view_appoinments_specialist.css' %}">
 </head>
 
 <body>
-    {% include 'specialist_nav_bar.html' %}
 <div class="container mt-5">
     <div class="row">
         <div class="col-md-12">
@@ -49,9 +46,9 @@
                             <td>{{ appointment.contact_number}}</td>
                             <td>{{ appointment.appointment_date }}</td>
                             <td>
-                                <button class="btn btn-primary btn-sm">Medical history</button>
-                                <button class="btn btn-info btn-sm">Reports</button>
-                                <button class="btn btn-danger btn-sm">Cancel</button>
+                                <a class="btn btn-primary btn-sm" href="{% url 'medical_history' %}">Medical history</a>
+                                <a class="btn btn-info btn-sm"  href="{% url 'specialist_report' %}">Reports</a>
+                                <a class="btn btn-danger btn-sm">Cancel</button>
                             </td>
                         </tr>
                         {% endfor %}

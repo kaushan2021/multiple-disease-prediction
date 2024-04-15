@@ -1,0 +1,60 @@
+{% if request.user.is_authenticated %}
+
+{% include 'specialist_nav_bar.html' %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patient Information Medical Profile</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <h1 class="mt-5 mb-4">Patient Information Medical Profile</h1>
+    <form>
+      <div class="form-group">
+        <label for="patientName">Patient Name:</label>
+        <input type="text" class="form-control" id="patientName" placeholder="Enter patient name">
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="patientAge">Age:</label>
+          <input type="number" class="form-control" id="patientAge" placeholder="Enter age">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="patientSex">Sex:</label>
+          <select class="form-control" id="patientSex">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="medicalHistory">Medical History:</label>
+        <textarea class="form-control" id="medicalHistory" rows="4" placeholder="Enter medical history"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+
+  <!-- Bootstrap JS and dependencies (optional if you need JavaScript functionality) -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+    
+{% else %}
+<div class="text-center"> 
+    <div class="alert alert-warning py-4" role="alert"> 
+        <h4 class="mb-0">You are not logged in.</h4> 
+    </div>
+    <a href="{% url 'login_form' %}" class="btn btn-primary btn-lg mt-3">Login</a>
+</div>
+{% endif %}
+

@@ -32,6 +32,8 @@ urlpatterns = [
     path('appointment_scheduler/', views.appointment_scheduler, name='appointment_scheduler'),
     path('specialist_home/', views.specialist_home, name='specialist_home'),
     path('specialist_appoinments/', views.specialist_appoinments, name='specialist_appoinments'),
+    path('specialist_report/', views.specialist_report_view, name='specialist_report'),
+    path('medical_history/', views.medical_history, name='medical_history')
 
 ]
 

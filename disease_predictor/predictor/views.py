@@ -5,10 +5,10 @@ from .ml_model import predict_breast_cancer,predict_heart_disease,predict_parkin
 from django.contrib.auth import authenticate, login ,logout
 from django.contrib import messages
 from predictor.models import User, PatientProfile, Patient,Gp,MedicalSpecialist,MedicalSpecialistProfile,Report,Appointment
-from predictor.util import is_user_name_unique ,feature_names_breast_cancer,feature_names_heart_disease,feature_names_parkinsons_disease
+from predictor.util import calculate_age, is_user_name_unique ,feature_names_breast_cancer,feature_names_heart_disease,feature_names_parkinsons_disease
 from django.core.serializers import serialize
 from .enums import DiseaseType,PredictionResult
-from datetime import datetime
+from datetime import date, datetime
 
 def gp_home_view(request):
     return render(request, 'home.html')
@@ -59,9 +59,21 @@ def breast_cancer_prediction(request):
 
 def heart_disease_prediction(request):
     if request.method == 'POST':
-        
+
         captured_data = []
 
+        patient_id = request.POST.get('patient_id')
+        patientProfile = get_object_or_404(PatientProfile, user_id=patient_id)
+        
+        patient_dob = patientProfile.dob
+        patient_age = calculate_age(patient_dob)
+        captured_data.append(patient_age)
+        patient_gender = patientProfile.gender
+        gender = 0
+        if patient_gender == "male":
+            gender = 1
+        captured_data.append(gender)
+        
         for feature in feature_names_heart_disease:
             data_value = request.POST.get(feature)
 
@@ -70,10 +82,9 @@ def heart_disease_prediction(request):
                 captured_data.append(data_value_float)
             except (ValueError, TypeError):
                 print(f"Could not convert {feature} value to float: {data_value}")
-
-           
-        #captured_data = [63,1,3,145,233,1,0,150,0,2.3,0,0,1]
-        captured_data = [67,1,0,120,229,0,0,129,1,2.6,1,2,3]     
+        
+        captured_data = [63,1,3,145,233,1,0,150,0,2.3,0,0,1]
+        #captured_data = [67,1,0,120,229,0,0,129,1,2.6,1,2,3]     
         prediction = predict_heart_disease(captured_data)
 
         if prediction ==1:
@@ -82,9 +93,8 @@ def heart_disease_prediction(request):
             prediction_result = PredictionResult.NEGATIVE
 
         try:
-            userId = request.POST.get('patient_id')
-            if userId != None:
-                patient = get_object_or_404(User, id=userId)
+            user_id = request.POST.get('patient_id')
+            patient = get_object_or_404(User, id=user_id)
             report = Report.objects.create(user=patient,disease_type=DiseaseType.HEART,result=prediction_result,created_date=datetime.now())
             report.save()
         except (ValueError, TypeError): 
@@ -365,3 +375,9 @@ def specialist_appoinments(request):
     else:
         messages.error(request, 'please login!')
         return redirect('login_form')
+
+def specialist_report_view(request):
+    return render(request, 'specialist_patient_report.html')
+
+def medical_history(request):
+    return render(request, 'medical_history.html')
