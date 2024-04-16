@@ -50,6 +50,17 @@ def breast_cancer_prediction(request):
                 patient = get_object_or_404(User, id=userId)
             report = Report.objects.create(user=patient,disease_type=DiseaseType.BREAST,result=prediction_result,created_date=datetime.now())
             report.save()
+
+            #sending medical report email alert
+            subject = "Your Test Result"
+            to = patient.email
+            patient_name = patient.first_name +" "+patient.last_name
+            disease_type =DiseaseType.BREAST
+            result = prediction_result
+            body = generate_medical_report(patient_name, disease_type, result)
+
+            email_alert(subject, body, to)
+
         except (ValueError, TypeError): 
                print(f"Could not convert {feature} value to float: {data_value}")
 
@@ -97,24 +108,24 @@ def heart_disease_prediction(request):
             prediction_result = PredictionResult.NEGATIVE
 
         try:
+            #saving resut to database
             user_id = request.POST.get('patient_id')
             patient = get_object_or_404(User, id=user_id)
             report = Report.objects.create(user=patient,disease_type=DiseaseType.HEART,result=prediction_result,created_date=datetime.now())
             report.save()
-        except (ValueError, TypeError): 
-               print(f"Could not convert {feature} value to float: {data_value}")
 
-        #sending medical report email alert
-        try:
+            #sending medical report email alert
             subject = "Your Test Result"
-            to = "pasindukaushan98@gmail.com"
-            patient_name = "John Doe"
-            disease_type = "Heart Disease"
-            result = "Positive"
+            to = patient.email
+            patient_name = patient.first_name +" "+patient.last_name
+            disease_type =DiseaseType.PARKINSON
+            result = prediction_result
             body = generate_medical_report(patient_name, disease_type, result)
+
             email_alert(subject, body, to)
-        except(ValueError, TypeError):
-              print(f"Could not Sent the email {feature}  {data_value}")
+
+        except (ValueError, TypeError): 
+               print(f"Something went wrong{ValueError} {TypeError}")
 
         return render(request,'heart_disease_prediction.html',{'prediction': prediction})
 
@@ -150,8 +161,19 @@ def parkinsons_prediction(request):
                 patient = get_object_or_404(User, id=userId)
             report = Report.objects.create(user=patient,disease_type=DiseaseType.PARKINSON,result=prediction_result,created_date=datetime.now())
             report.save()
+
+             #sending medical report email alert
+            subject = "Your Test Result"
+            to = patient.email
+            patient_name = patient.first_name +" "+patient.last_name
+            disease_type =DiseaseType.HEART
+            result = prediction_result
+            body = generate_medical_report(patient_name, disease_type, result)
+
+            email_alert(subject, body, to)
+
         except (ValueError, TypeError): 
-               print(f"Could not convert {feature} value to float: {data_value}")
+               print(f"Error : {ValueError} {TypeError}")
 
         return render(request,'parkinsons_disease_prediction.html',{'prediction': prediction})
 
@@ -339,7 +361,9 @@ def patient_notification(request):
     return render(request, 'patient_notification.html',{'patient_reports': patient_reports})
 
 def patient_appointment_scheduler(request):
-    return render(request, 'appointment_scheduler.html')
+    if request.user.is_authenticated:
+        user_id = request.user.id
+    return render(request, 'appointment_scheduler.html',{'patient_id': user_id})
 
 def desease_education(request):
     return render(request, 'desease_education.html')
@@ -358,15 +382,20 @@ def patient_report_result(request):
 def appointment_scheduler(request):
     if request.user.is_authenticated:
         if request.method == 'POST':
-            patient_name = request.POST.get('patient_name')
-            contact_number = request.POST.get('contact_number')
-            specialist_type = request.POST.get('specialist_type')
-            appointment_date_str = request.POST.get('appointment_date')
             userId = request.user.id
-            appointment_date = datetime.strptime(appointment_date_str, "%Y-%m-%dT%H:%M")
+            specialist_type = request.POST.get('specialist_type')
+            contact_number = request.POST.get('contact_number')
+            appointment_date_str = request.POST.get('appointment_date')
+            # Parse the string into a datetime object
+            date_object = datetime.fromisoformat(appointment_date_str.replace('Z', '+00:00'))
 
+            # Format the datetime object as needed
+            appointment_date = date_object.strftime('%Y-%m-%d %H:%M:%S')
+        
             try:    
                 user = get_object_or_404(User, id=userId)
+                patientProfile = get_object_or_404(PatientProfile,user_id=userId)
+                patient_name = patientProfile.user.first_name +" "+patientProfile.user.last_name
                 report = Appointment.objects.create(user=user,patient_name = patient_name, specialist_type = specialist_type,contact_number=contact_number, appointment_date =appointment_date,created_date=datetime.now())
                 report.save()
                 messages.success(request, 'Your appointment is scheduled!')

@@ -97,20 +97,23 @@ def calculate_age(birth_date):
     return age
 
 def email_alert(subject,body,to):
-    msg = EmailMessage()
-    msg.set_content(body, subtype='html')
-    msg['subject'] = subject
-    msg['to'] = to
-    msg['from'] = "healthguardianpro@gmail.com"
+    try:
+        msg = EmailMessage()
+        msg.set_content(body, subtype='html')
+        msg['subject'] = subject
+        msg['to'] = to
+        msg['from'] = "healthguardianpro@gmail.com"
 
-    user = "healthguardianpro@gmail.com"
-    password = "pormfgtduzibppil"
+        user = "healthguardianpro@gmail.com"
+        password = "pormfgtduzibppil"
 
-    server = smtplib.SMTP("smtp.gmail.com",587)
-    server.starttls()
-    server.login(user,password)
-    server.send_message(msg)
+        server = smtplib.SMTP("smtp.gmail.com",587)
+        server.starttls()
+        server.login(user,password)
+        server.send_message(msg)
 
-    server.quit()
+        server.quit()
 
-
+    except(TypeError,ValueError):
+        print("Mail Sending Error")
+   

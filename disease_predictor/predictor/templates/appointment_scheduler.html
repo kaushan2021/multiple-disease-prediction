@@ -23,28 +23,27 @@
                     <form method="post" action="{% url 'appointment_scheduler' %}" class="needs-validation">
                         {% csrf_token %}
                         <div class="form-group">
-                            <label for="patientName">Patient Name:</label>
-                            <input type="text" class="form-control" id="patientName" name="patient_name" required>
-                        </div>
-
-                        <div class="form-group">
                             <label for="contactNumber">Contact Number:</label>
-                            <input type="tel" class="form-control" id="contactNumber" name="contact_number" required>
+                            <input type="number" class="form-control" id="contactNumber" name="contact_number" required>
                         </div>
 
                         <div class="form-group">
                             <label for="specialistType">Specialist Type:</label>
                             <select class="form-control" id="specialistType" name="specialist_type" required>
-                                <option>Breast Cancer Specialist</option>
-                                <option>Heart Health Specialist</option>
-                                <option>Parkinson's Specialist</option>
+                                <option value="">Select Specialist Type</option>
+                                <option value="breast_cancer">Breast Cancer Specialist</option>
+                                <option value="heart_health">Heart Health Specialist</option>
+                                <option value="parkinsons">Parkinson's Specialist</option>
                             </select>
                         </div>
 
                         <div class="form-group">
-                            <label for="appointmentDate">Appointment Date Time:</label>
-                            <input type="datetime-local" class="form-control" id="appointmentDate" name="appointment_date" required>
+                            <label for="calendar">Appointment Date Time:</label>
+                            <strong><div id="selectedDateTime"></div></strong>
+                            <div id="calendar"></div>
+                            <input type="hidden" id="appointmentDateTime" name="appointment_date" value="" required>
                         </div>
+                        
                         {% if messages %}
                         {% for message in messages %}
                         <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -55,6 +54,7 @@
                         </div>
                         {% endfor %}
                         {% endif %}
+                        
                         <div class="text-center"> 
                             <button type="submit" class="btn btn-primary">Schedule Appointment</button>
                         </div>
@@ -67,8 +67,77 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.4.7/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar/index.global.min.js'></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const calendarEl = document.getElementById('calendar');
+            const calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'timeGridWeek',
+                selectable: true,
+                select: function(info) {
+                    // Capture the selected date and time
+                    var selectedDateTime = info.start;
+                    // Format the selected date and time as required
+                    var formattedDateTime = selectedDateTime.toLocaleString();
+                    // Set the text content of the selectedDateTime div
+                    $('#selectedDateTime').text(formattedDateTime);
+                    // Set the value of the hidden input field
+                    $('#appointmentDateTime').val(selectedDateTime.toISOString());
+                },
+                events: function(fetchInfo, successCallback, failureCallback) {
+                    var specialistType = $('#specialistType').val();
+                    if (specialistType !== '') {
+                        fetchUnavailableSlots(specialistType, successCallback);
+                    }
+                },
+                eventClick: function(info) {
+                    // Prevent users from clicking on unavailable slots
+                    if (info.event.title === 'Unavailable') {
+                        info.jsEvent.preventDefault(); // Prevent the default action
+                    }
+                },
+                eventContent: function(arg) {
+                    // Display unavailable slots as time slots
+                    if (arg.event.title === 'Unavailable') {
+                        return {
+                            html: '<div class="fc-timegrid-event fc-h-event fc-event fc-start fc-end">' + 
+                                '<div class="fc-content">' + 
+                                '<div class="fc-time">' + arg.timeText + '</div>' +
+                                '</div>' +
+                                '</div>'
+                        };
+                    }
+                },
+    
+                allDaySlot: false,
+                // Limit the visible hours to 9 am to 8 pm
+                slotMinTime: '09:00:00',
+                slotMaxTime: '20:00:00',
+                // Show only today and onward
+                validRange: {
+                    start: new Date().toISOString().split('T')[0]
+                }
+            });
+            calendar.render();
+        });
+    
+        // Function to fetch unavailable appointment slots based on selected specialist type
+        function fetchUnavailableSlots(specialistType, successCallback) {
+            var unavailableSlots = [
+                // Include the unavailable dates here
+                { title: 'Unavailable', start: '2024-04-16' },
+                { title: 'Unavailable', start: '2024-04-18' },
+                { title: 'Unavailable', start: '2024-04-19' }
+            ];
+            successCallback(unavailableSlots);
+        }
+    </script>
+    
+    
 </body>
 </html>
+
 
     
 {% else %}
