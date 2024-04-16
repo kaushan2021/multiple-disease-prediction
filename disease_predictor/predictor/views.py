@@ -5,7 +5,7 @@ from .ml_model import predict_breast_cancer,predict_heart_disease,predict_parkin
 from django.contrib.auth import authenticate, login ,logout
 from django.contrib import messages
 from predictor.models import User, PatientProfile, Patient,Gp,MedicalSpecialist,MedicalSpecialistProfile,Report,Appointment
-from predictor.util import calculate_age, is_user_name_unique ,feature_names_breast_cancer,feature_names_heart_disease,feature_names_parkinsons_disease
+from predictor.util import calculate_age, email_alert, generate_medical_report, is_user_name_unique ,feature_names_breast_cancer,feature_names_heart_disease,feature_names_parkinsons_disease
 from django.core.serializers import serialize
 from .enums import DiseaseType,PredictionResult
 from datetime import date, datetime
@@ -65,15 +65,19 @@ def heart_disease_prediction(request):
         patient_id = request.POST.get('patient_id')
         patientProfile = get_object_or_404(PatientProfile, user_id=patient_id)
         
+        #getting dob of patient from db
         patient_dob = patientProfile.dob
         patient_age = calculate_age(patient_dob)
+        #add parient age to the array 
         captured_data.append(patient_age)
+
         patient_gender = patientProfile.gender
-        gender = 0
         if patient_gender == "male":
             gender = 1
+        if patient_gender == "female":
+            gender = 0    
         captured_data.append(gender)
-        
+
         for feature in feature_names_heart_disease:
             data_value = request.POST.get(feature)
 
@@ -100,6 +104,17 @@ def heart_disease_prediction(request):
         except (ValueError, TypeError): 
                print(f"Could not convert {feature} value to float: {data_value}")
 
+        #sending medical report email alert
+        try:
+            subject = "Your Test Result"
+            to = "pasindukaushan98@gmail.com"
+            patient_name = "John Doe"
+            disease_type = "Heart Disease"
+            result = "Positive"
+            body = generate_medical_report(patient_name, disease_type, result)
+            email_alert(subject, body, to)
+        except(ValueError, TypeError):
+              print(f"Could not Sent the email {feature}  {data_value}")
 
         return render(request,'heart_disease_prediction.html',{'prediction': prediction})
 

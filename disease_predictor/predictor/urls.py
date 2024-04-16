@@ -34,6 +34,6 @@ urlpatterns = [
     path('specialist_appoinments/', views.specialist_appoinments, name='specialist_appoinments'),
     path('specialist_report/', views.specialist_report_view, name='specialist_report'),
     path('medical_history/', views.medical_history, name='medical_history')
-
+    
 ]
 
