@@ -7,50 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Health Report - HealthGuardianPro</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'patient_report.css' %}">
 </head>
-<style>
-    body {
-        background-color: #f4f4f9;
-        color: #333;
-        font-family: 'Arial', sans-serif;
-    }
-    
-    .report-card {
-        background-color: #ffffff;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        padding: 20px;
-        margin-bottom: 20px;
-    }
-    
-    .report-title {
-        color: #0056b3;
-        margin-bottom: 20px;
-    }
-    
-    .patient-info, .test-results {
-        margin-bottom: 20px;
-    }
-    
-    .contact-specialist {
-        text-align: center;
-    }
-    
-    .btn-primary {
-        padding: 0.5rem 1rem;
-        text-decoration: none; 
-        color: #ffffff; 
-        background-color: #007bff; 
-        border-color: #007bff;
-        border-radius: 0.25rem; 
-        transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out; 
-    }
-    
-    .btn-primary:hover {
-        background-color: #0056b3; 
-        border-color: #0056b3; 
-    } 
-</style>
 <body>
     {% include 'patient_nav_bar.html' %}
 <div class="container mt-5">
@@ -66,9 +25,9 @@
             {% else %}
                 <p><strong>Test Result:</strong> <span style="color: green;">{{ report.result }}</span></p>
             {% endif %}
-        </div>
-        <div class="contact-specialist">
-            <a href="#contact-specialist-link" class="btn btn-primary">Contact Specialist</a>
+            <div class="contact-specialist">
+                <a class="btn btn-primary" href="{% url 'patient_appointment_scheduler' %}">Contact Specialist</a>
+              </div>
         </div>
     </div>
 </div>

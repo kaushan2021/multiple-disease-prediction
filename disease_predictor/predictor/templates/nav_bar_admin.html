@@ -1,48 +1,8 @@
 <head>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-</head>
-<style>
-    .navbar {
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        background-color: #3498db; 
-        padding: 0.5rem 1rem; /* Adjust padding as needed */
-    }
-    
-    .navbar-brand {
-        color: #0056b3;
-        font-weight: bold; /* Makes the brand name bolder */
-        transition: transform 0.3s ease-in-out; /* Smooth transition for scaling */
-    }
-    
-    .navbar-brand:hover {
-        transform: scale(1.1); /* Slightly increase the size on hover */
-    }
-    
-    .nav-link {
-        margin-right: 10px; /* Spacing between items */
-        color: #555; /* Initial color for nav items */
-        transition: color 0.3s ease-in-out, border-bottom 0.3s ease-in-out; /* Smooth transition for color and border */
-        padding-bottom: 0.25rem; /* Padding to make room for the border */
-    }
-    
-    .nav-link:hover, .nav-link:focus {
-        color: #0056b3; /* Color when hovering over items */
-        border-bottom: 2px solid #0056b3; /* Border under the item for emphasis */
-    }
-    
-    /* Add this class to the <ul> that contains the nav-links for horizontal animation */
-    .navbar-nav {
-        display: flex;
-        padding-left: 0;
-        margin-bottom: 0;
-        list-style: none;
-    }
-    
-    /* Navbar toggle (hamburger) color */
-    .navbar-toggler {
-        border-color: rgba(0,0,0,.1);
-    }
-</style>   
+  {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'gp_patient_select.css' %}">
+</head>  
 <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
     <a class="navbar-brand" href="{% url 'admin_home_view' %}">HealthGuardianPro</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

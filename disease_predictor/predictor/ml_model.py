@@ -4,43 +4,52 @@ import os
 from django.conf import settings
 
 def predict_breast_cancer(features):
+    try:
+        server_path = os.path.dirname(__file__)
+        ml_model_folder = os.path.join(server_path, 'Ml_Models')       
+        model_file_path = os.path.join(ml_model_folder,'breast_cancer_prediction_model.sav') 
 
-    server_path = os.path.dirname(__file__)
-    ml_model_folder = os.path.join(server_path, 'Ml_Models')       
-    model_file_path = os.path.join(ml_model_folder,'breast_cancer_prediction_model.sav') 
-
-    model = pickle.load(open(model_file_path, 'rb'))
-    input_data_as_numpy_array = np.asarray(features)
-    input_data_reshaped = input_data_as_numpy_array.reshape(1,-1)
-    prediction = model.predict(input_data_reshaped)
-    prediction_result = int(prediction[0])
+        model = pickle.load(open(model_file_path, 'rb'))
+        input_data_as_numpy_array = np.asarray(features)
+        input_data_reshaped = input_data_as_numpy_array.reshape(1,-1)
+        prediction = model.predict(input_data_reshaped)
+        prediction_result = int(prediction[0])
+        
+        return prediction_result
     
-    return prediction_result
-
+    except (ValueError, TypeError):
+        print(ValueError,TypeError)   
+    
 def predict_heart_disease(features):
+    try:
+        server_path = os.path.dirname(__file__)
+        ml_model_folder = os.path.join(server_path, 'Ml_Models')       
+        model_file_path = os.path.join(ml_model_folder,'heart_disease_prediction_model.sav') 
 
-    server_path = os.path.dirname(__file__)
-    ml_model_folder = os.path.join(server_path, 'Ml_Models')       
-    model_file_path = os.path.join(ml_model_folder,'heart_disease_prediction_model.sav') 
+        model = pickle.load(open(model_file_path, 'rb'))
+        input_data_as_numpy_array = np.asarray(features)
+        input_data_reshaped = input_data_as_numpy_array.reshape(1,-1)
+        prediction = model.predict(input_data_reshaped)
+        prediction_result = int(prediction[0])
 
-    model = pickle.load(open(model_file_path, 'rb'))
-    input_data_as_numpy_array = np.asarray(features)
-    input_data_reshaped = input_data_as_numpy_array.reshape(1,-1)
-    prediction = model.predict(input_data_reshaped)
-    prediction_result = int(prediction[0])
+        return prediction_result
     
-    return prediction_result
+    except (ValueError, TypeError):
+        print(ValueError,TypeError)
 
 def predict_parkinsons_disease(features):
+    try:
+        server_path = os.path.dirname(__file__)
+        ml_model_folder = os.path.join(server_path, 'Ml_Models')       
+        model_file_path = os.path.join(ml_model_folder,'parkinsons_disease_prediction_model.sav') 
 
-    server_path = os.path.dirname(__file__)
-    ml_model_folder = os.path.join(server_path, 'Ml_Models')       
-    model_file_path = os.path.join(ml_model_folder,'parkinsons_disease_prediction_model.sav') 
-
-    model = pickle.load(open(model_file_path, 'rb'))
-    input_data_as_numpy_array = np.asarray(features)
-    input_data_reshaped = input_data_as_numpy_array.reshape(1,-1)
-    prediction = model.predict(input_data_reshaped)
-    prediction_result = int(prediction[0])
+        model = pickle.load(open(model_file_path, 'rb'))
+        input_data_as_numpy_array = np.asarray(features)
+        input_data_reshaped = input_data_as_numpy_array.reshape(1,-1)
+        prediction = model.predict(input_data_reshaped)
+        prediction_result = int(prediction[0])
+        
+        return prediction_result
     
-    return prediction_result
+    except (ValueError, TypeError):
+        print(ValueError,TypeError)

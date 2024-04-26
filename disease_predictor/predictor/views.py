@@ -16,9 +16,9 @@ def gp_home_view(request):
 def diagnoser_view(request):
     userId = request.GET.get('userId')
     if userId != None:
-        patient = get_object_or_404(User, id=userId)
-        patientId = patient.pk
-    return render(request, 'diagnoser.html', {'feature_names_breast_cancer': feature_names_breast_cancer ,'feature_names_heart_disease':feature_names_heart_disease,'feature_names_parkinsons_disease':feature_names_parkinsons_disease,'patient_id':userId})
+        patientProfile = get_object_or_404(PatientProfile, user_id=userId)
+        user_gender = patientProfile.gender
+    return render(request, 'diagnoser.html', {'feature_names_breast_cancer': feature_names_breast_cancer ,'feature_names_heart_disease':feature_names_heart_disease,'feature_names_parkinsons_disease':feature_names_parkinsons_disease,'patient_id':userId,'user_gender':user_gender})
 
 def breast_cancer_prediction(request):
     if request.method == 'POST':
@@ -27,17 +27,13 @@ def breast_cancer_prediction(request):
 
         for feature in feature_names_breast_cancer:
             data_value = request.POST.get(feature)
-
             try:
                 data_value_float = float(data_value)
                 captured_data.append(data_value_float)
             except (ValueError, TypeError):
                 print(f"Could not convert {feature} value to float: {data_value}")
 
-           
-        canser_data = [13.28, 20.28, 87.32, 545.2, 0.1041, 0.1436, 0.09847, 0.06158, 0.1974, 0.06782, 0.3704, 0.8249, 2.427, 31.33, 0.005072, 0.02147, 0.02185, 0.00956, 0.01719, 0.003317, 17.38, 28, 113.1, 907.2, 0.153, 0.3724, 0.3664, 0.1492, 0.3739, 0.1027]
-        non_canser_data =[8.196, 16.84, 51.71, 201.9, 0.086, 0.05943, 0.01588, 0.005917, 0.1769, 0.06503, 0.1563, 0.9567, 1.094, 8.205, 0.008968, 0.01646, 0.01588, 0.005917, 0.02574, 0.002582, 8.964, 21.96, 57.26, 242.2, 0.1297, 0.1357, 0.0688, 0.02564, 0.3105, 0.07409]        
-        prediction = predict_breast_cancer(canser_data) 
+        prediction = predict_breast_cancer(captured_data) 
 
         if prediction == 0:
             prediction_result = PredictionResult.POSITIVE
@@ -97,9 +93,7 @@ def heart_disease_prediction(request):
                 captured_data.append(data_value_float)
             except (ValueError, TypeError):
                 print(f"Could not convert {feature} value to float: {data_value}")
-        
-        captured_data = [63,1,3,145,233,1,0,150,0,2.3,0,0,1]
-        #captured_data = [67,1,0,120,229,0,0,129,1,2.6,1,2,3]     
+
         prediction = predict_heart_disease(captured_data)
 
         if prediction ==1:
@@ -145,9 +139,6 @@ def parkinsons_prediction(request):
             except (ValueError, TypeError):
                 print(f"Could not convert {feature} value to float: {data_value}")
 
-           
-        #captured_data = [197.07600,206.89600,192.05500,0.00289,0.00001,0.00166,0.00168,0.00498,0.01098,0.09700,0.00563,0.00680,0.00802,0.01689,0.00339,26.77500,0.422229,0.741367,-7.348300,0.177551,1.743867,0.085569]
-        captured_data = [150.44000, 163.44100, 144.73600, 0.00396, 0.00003, 0.00206, 0.00233, 0.00619, 0.02551, 0.23700, 0.01321, 0.01574, 0.02148, 0.03964, 0.00611, 23.13300, 0.352396, 0.759320, -6.261446, 0.183218, 2.264226, 0.144105]     
         prediction = predict_parkinsons_disease(captured_data) 
 
         if prediction == 1:

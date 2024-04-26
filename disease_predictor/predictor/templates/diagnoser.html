@@ -10,11 +10,13 @@
 
 <div class="container">
     <ul class="nav nav-tabs justify-content-center">
+        {% if user_gender == 'female' %}
         <li class="nav-item">
-            <a class="nav-link active" id="tab1" data-toggle="tab" href="#content1">
+            <a class="nav-link" id="tab1" data-toggle="tab" href="#content1">
                 <i class="fas fa-user-md"></i> Breast Cancer
             </a>
         </li>
+        {% endif %}
         <li class="nav-item">
             <a class="nav-link" id="tab2" data-toggle="tab" href="#content2">
                 <i class="fas fa-heartbeat"></i> Heart Disease
@@ -28,10 +30,10 @@
     </ul>
 
     <div class="tab-content">
-        <div class="tab-pane fade show active" id="content1">
+        <div class="tab-pane fade show" id="content1">
             <a href="{% url 'breast_cancer_info' %}"><i class="fas fa-info-circle"></i></a>
             <h1 class="mb-4 text-center">Breast Cancer Diagnose</h1>    
-            <form method="post" action="{% url 'breast_cancer_prediction' %}" class="needs-validation" novalidate>
+            <form method="post" action="{% url 'breast_cancer_prediction' %}" class="needs-validation">
                 {% csrf_token %}
                 <input type="hidden" id="patient_id" name="patient_id" value="{{ patient_id }}">
                 <div class="row row-cols-1 row-cols-md-5 g-4">
@@ -59,7 +61,7 @@
         <div class="tab-pane fade" id="content2">
             <a href="{% url 'heart_disease_info' %}"><i class="fas fa-info-circle"></i></a>
             <h1 class="mb-4 text-center">Heart Disease Diagnose</h1>
-            <form method="post" action="{% url 'heart_disease_prediction' %}" class="needs-validation" novalidate>
+            <form method="post" action="{% url 'heart_disease_prediction' %}" class="needs-validation">
                 {% csrf_token %}
                 <input type="hidden" id="patient_id" name="patient_id" value="{{ patient_id }}">
                 <div class="row row-cols-1 row-cols-md-5 g-4">
@@ -87,7 +89,7 @@
         <div class="tab-pane fade" id="content3">
             <a href="{% url 'heart_disease_info' %}"><i class="fas fa-info-circle"></i></a>
             <h1 class="mb-4 text-center">Parkinson Disease Diagnose</h1>
-            <form method="post" action="{% url 'parkinsons_prediction' %}" class="needs-validation" novalidate>
+            <form method="post" action="{% url 'parkinsons_prediction' %}" class="needs-validation">
                 {% csrf_token %}
                 <input type="hidden" id="patient_id" name="patient_id" value="{{ patient_id }}">
                 <div class="row row-cols-1 row-cols-md-5 g-4">

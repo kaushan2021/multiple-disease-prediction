@@ -1,0 +1,38 @@
+.navbar {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    background-color: #3498db; 
+    padding: 0.5rem 1rem;
+}
+
+.navbar-brand {
+    color: #0056b3;
+    font-weight: bold; 
+    transition: transform 0.3s ease-in-out; 
+}
+
+.navbar-brand:hover {
+    transform: scale(1.1); 
+}
+
+.nav-link {
+    margin-right: 10px; 
+    color: #555; 
+    transition: color 0.3s ease-in-out, border-bottom 0.3s ease-in-out; 
+    padding-bottom: 0.25rem; 
+}
+
+.nav-link:hover, .nav-link:focus {
+    color: #0056b3;
+    border-bottom: 2px solid #0056b3;
+}
+
+.navbar-nav {
+    display: flex;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+}
+
+.navbar-toggler {
+    border-color: rgba(0,0,0,.1);
+}
