@@ -162,7 +162,7 @@ def parkinsons_prediction(request):
             report = Report.objects.create(user=patient,disease_type=DiseaseType.PARKINSON,result=prediction_result,created_date=datetime.now())
             report.save()
 
-             #sending medical report email alert
+            #sending medical report email alert
             subject = "Your Test Result"
             to = patient.email
             patient_name = patient.first_name +" "+patient.last_name
